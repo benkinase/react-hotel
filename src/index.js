@@ -4,16 +4,22 @@ import "./index.css";
 import App from "./App";
 import { BrowserRouter as Router } from "react-router-dom";
 import { RoomContextProvider } from "./context/RoomContext";
+import { AuthContextProvider } from "./context/auth/AuthContext";
+import { ToggleContextProvider } from "./context/modal/ModalContext";
 import * as serviceWorker from "./serviceWorker";
 
 ReactDOM.render(
-  <RoomContextProvider>
-    <React.StrictMode>
-      <Router>
-        <App />
-      </Router>
-    </React.StrictMode>
-  </RoomContextProvider>,
+  <AuthContextProvider>
+    <RoomContextProvider>
+      <ToggleContextProvider>
+        <React.StrictMode>
+          <Router>
+            <App />
+          </Router>
+        </React.StrictMode>
+      </ToggleContextProvider>
+    </RoomContextProvider>
+  </AuthContextProvider>,
   document.getElementById("root")
 );
 

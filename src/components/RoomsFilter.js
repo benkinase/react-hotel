@@ -37,17 +37,17 @@ export default function RoomsFilter({ sortedRooms }) {
     </option>
   ));
   return (
-    <section className="filter-container">
-      <Title title="search rooms" />
-      <form className="filter-form">
+    <section className='filter-container'>
+      <Title title='search rooms' />
+      <form className='filter-form'>
         {/* select type */}
-        <div className="form-group">
-          <label htmlFor="type">room type</label>
+        <div className='form-group'>
+          <label htmlFor='type'>room type</label>
           <select
-            name="type"
-            id="type"
+            name='type'
+            id='type'
             onChange={handleChange}
-            className="form-control"
+            className='form-control'
             value={type}
           >
             {types}
@@ -55,13 +55,13 @@ export default function RoomsFilter({ sortedRooms }) {
         </div>
         {/* end of select type */}
         {/* guests  */}
-        <div className="form-group">
-          <label htmlFor="capacity">Guests</label>
+        <div className='form-group'>
+          <label htmlFor='capacity'>Guests</label>
           <select
-            name="capacity"
-            id="capacity"
+            name='capacity'
+            id='capacity'
             onChange={handleChange}
-            className="form-control"
+            className='form-control'
             value={capacity}
           >
             {people}
@@ -69,61 +69,61 @@ export default function RoomsFilter({ sortedRooms }) {
         </div>
         {/* end of guests */}
         {/* room price */}
-        <div className="form-group">
-          <label htmlFor="price">room price ${price}</label>
+        <div className='form-group'>
+          <label htmlFor='price'>room price €{price}</label>
           <input
-            type="range"
-            name="price"
+            type='range'
+            name='price'
             min={minPrice}
             max={maxPrice}
-            id="price"
+            id='price'
             value={price}
             onChange={handleChange}
-            className="form-control"
+            className='form-control rcolor'
           />
         </div>
         {/* end of room price*/}
         {/* size */}
-        <div className="form-group">
-          <label htmlFor="price">room size </label>
-          <div className="size-inputs">
+        <div className='form-group'>
+          <label htmlFor='price'>room size </label>
+          <div className='size-inputs'>
             <input
-              type="number"
-              name="minSize"
+              type='number'
+              name='minSize'
               value={minSize}
               onChange={handleChange}
-              className="size-input"
+              className='size-input'
             />
             <input
-              type="number"
-              name="maxSize"
+              type='number'
+              name='maxSize'
               value={maxSize}
               onChange={handleChange}
-              className="size-input"
+              className='size-input'
             />
           </div>
         </div>
         {/* end of select type */}
         {/* extras */}
-        <div className="form-group">
-          <div className="single-extra">
+        <div className='form-group'>
+          <div className='single-extra'>
             <input
-              type="checkbox"
-              name="breakfast"
-              id="breakfast"
+              type='checkbox'
+              name='breakfast'
+              id='breakfast'
               checked={breakfast}
               onChange={handleChange}
             />
-            <label htmlFor="breakfast">breakfast</label>
+            <label htmlFor='breakfast'>breakfast</label>
           </div>
-          <div className="single-extra">
+          <div className='single-extra'>
             <input
-              type="checkbox"
-              name="pets"
+              type='checkbox'
+              name='pets'
               checked={pets}
               onChange={handleChange}
             />
-            <label htmlFor="breakfast">pets</label>
+            <label htmlFor='breakfast'>pets</label>
           </div>
         </div>
         {/* end of extras type */}

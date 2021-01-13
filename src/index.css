@@ -1,17 +1,3 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-}
-
 @import url("https://fonts.googleapis.com/css2?family=Philosopher:ital@1&family=Poppins:wght@300&display=swap");
 
 :root {
@@ -22,13 +8,97 @@ code {
   --mainDark: #232528;
   --mainYellow: #ffd000;
   --lightRed: rgb(223, 139, 124);
+
+  /*MODAL, LOGIN, REGISTER*/
+  --primaryColor: #ebfffd;
+  --secondaryColor: rgb(255, 255, 255);
+  --tertiaryColor: hsl(0, 36%, 91%);
+  --quaternaryColor: rgb(243, 241, 241);
+
+  --borderColor: hsl(0, 0%, 76%);
+  /*text*/
+  --primaryText: hsl(253, 97%, 13%);
+  --secondaryText: hsl(350, 100%, 42%);
+  --tertiaryText: rgb(2, 9, 44);
+  --quaternaryText: hsl(214, 95%, 30%);
+
+  /*button*/
+
+  --buttonBgColor: #ccb38f;
+  --buttonBgColor1: rgb(198, 209, 214);
+  --buttonColor: hsl(219, 92%, 19%);
+  --buttonColor1: rgb(241, 206, 8);
+  --buttonHoverColor: #f0d2a9;
+  --buttonHoverColor1: hsl(209, 88%, 23%);
+
+  --formBgColor: rgb(69, 90, 90);
+  --formColor: rgb(252, 232, 232);
+
+  --footerBgColor: hsl(12, 77%, 42%);
+  --footerColor: hsla(199, 93%, 89%, 0.993);
+
+  --mainTransition: all 0.3s linear;
 }
 
-body {
-  margin: 0;
-  padding: 0;
-  font-family: "Philosopher", sans-serif important!;
-  background: var(--mainDark) important!;
-  color: var(--mainDark) important!;
-  position: relative;
+/*REGISTER & LOGIN components*/
+.contact {
+  background-color: var(--formBgColor);
+  padding-bottom: 30px;
+}
+.form-container {
+  width: 100%;
+}
+.form-container h3 {
+  text-align: center;
+  margin-top: 10px !important;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  border-radius: 5px;
+  color: var(--tertiaryText);
+}
+.input-field {
+  width: 80%;
+  padding: 10px;
+  background-color: var(--formColor);
+  border-radius: 1px;
+  border: 1px solid var(--borderColor);
+  font-size: 18px;
+  color: var(--tertiaryText);
+  margin-bottom: 5px;
+}
+.input-field::placeholder {
+  padding: 5px;
+  color: var(---tertiaryText);
+  opacity: 0.3;
+}
+.input-field:focus {
+  outline: none;
+  color: var(---tertiaryText);
+}
+
+.submit-btn {
+  margin-top: 20px;
+  width: 80%;
+  padding: 10px;
+  text-transform: uppercase;
+  font-weight: 800;
+  letter-spacing: 0.3rem;
+  cursor: pointer;
+  color: var(--buttonColor);
+  background-color: var(--buttonBgColor);
+  transition: var(--mainTransition);
+  border: none;
+}
+.submit-btn:hover {
+  background-color: var(--buttonHoverColor);
+  transition: var(--mainTransition);
+}
+.submit-btn:focus {
+  outline: none;
 }

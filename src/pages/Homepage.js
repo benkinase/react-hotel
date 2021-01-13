@@ -8,12 +8,12 @@ import { ROUTES } from "../routes";
 
 export default function Homepage() {
   const homeTitle = "Welcome Back";
-  const homeMsg = " Rooms now starting at $455";
+  const homeMsg = " Rooms now starting at €455";
   return (
     <>
       <Hero>
         <Banner title={homeTitle} subtitle={homeMsg}>
-          <Link to={ROUTES.ROOMS} className="btn-primary">
+          <Link to={ROUTES.ROOMS} className='btn-primary'>
             Find Your Ideal Room
           </Link>
         </Banner>

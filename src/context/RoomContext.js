@@ -19,6 +19,36 @@ class RoomContextProvider extends Component {
     breakfast: false,
     pets: false,
   };
+  async getDjangoHotelData() {
+    const url = "http://127.0.0.1:8000/api/rooms/";
+    let headers = {
+      "Content-Type": "application/json",
+      Authorization: "",
+    };
+    try {
+      let res = await fetch(url, { method: "GET", headers });
+      let result = await res.json();
+      let rooms = this.djangoDataFormatter(result);
+      let featuredRooms = rooms.filter((room) => room.featured === true);
+
+      //
+      let maxPrice = Math.max(...rooms.map((item) => item.price));
+      let maxSize = Math.max(...rooms.map((item) => item.size));
+      this.setState({
+        rooms,
+        featuredRooms,
+        sortedRooms: rooms,
+        isLoading: false,
+        price: maxPrice,
+        maxPrice,
+        maxSize,
+      });
+
+      //after
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   getContentfulData = async () => {
     try {
@@ -51,10 +81,11 @@ class RoomContextProvider extends Component {
   };
 
   componentDidMount() {
-    this.getContentfulData();
+    //this.getContentfulData();
+    this.getDjangoHotelData();
   }
 
-  getSingleRoom = (slug) => {
+  getRoomDetails = (slug) => {
     let tempRooms = [...this.state.rooms];
     const room = tempRooms.find((room) => room.slug === slug);
     return room; //obj---filetr// array
@@ -69,19 +100,22 @@ class RoomContextProvider extends Component {
     });
     return tempItems;
   }
+  djangoDataFormatter(items) {
+    let tempItems = items.map((item) => {
+      let id = item.id;
+      let images = item.images.map((image) => image.image);
+      let room = { ...item, images, id };
+      return room;
+    });
+    return tempItems;
+  }
 
   handleChange = (event) => {
     const target = event.target;
     const value = target.type === "checkbox" ? target.checked : target.value;
     const name = target.name;
-    console.log(name, value);
 
-    this.setState(
-      {
-        [name]: value,
-      },
-      this.filterRooms
-    );
+    this.setState({ [name]: value }, this.filterRooms);
   };
   filterRooms = () => {
     let {
@@ -128,12 +162,13 @@ class RoomContextProvider extends Component {
       sortedRooms: tempRooms,
     });
   };
+
   render() {
     return (
       <RoomContext.Provider
         value={{
           ...this.state,
-          getSingleRoom: this.getSingleRoom,
+          getRoomDetails: this.getRoomDetails,
           handleChange: this.handleChange,
         }}
       >
