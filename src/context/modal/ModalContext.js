@@ -1,32 +1,37 @@
-import React, { createContext } from "react";
+import React, { createContext, useState, useCallback } from "react";
 
 const ToggleContext = createContext();
 
 function ToggleContextProvider(props) {
-  const [isLogin, setIsLogin] = React.useState(false);
-  const [isSignUp, setIsSignUp] = React.useState(false);
-  const [isBooking, setIsBooking] = React.useState(false);
+  const [isLogin, setIsLogin] = useState(false);
+  const [isSignUp, setIsSignUp] = useState(false);
 
   // callback
-  const toggleLogin = React.useCallback(() => setIsLogin(!isLogin), [
+  const toggleLogin = useCallback(() => setIsLogin(!isLogin), [
     isLogin,
     setIsLogin,
   ]);
-  const toggleSignUp = React.useCallback(() => setIsSignUp(!isSignUp), [
+  const toggleSignUp = useCallback(() => setIsSignUp(!isSignUp), [
     isSignUp,
     setIsSignUp,
   ]);
-  const toggleBooking = React.useCallback(() => setIsBooking(!isBooking), [
-    isBooking,
-    setIsBooking,
-  ]);
+  // const toggleBooking = React.useCallback(() => setIsBooking(!isBooking), [
+  //   isBooking,
+  //   setIsBooking,
+  // ]);
+  const [isOpen, setOpen] = useState(false);
+  const toggleBooking = useCallback(() => setOpen(!isOpen), [isOpen, setOpen]);
 
+  const close = () => {
+    setOpen(false);
+  };
   return (
     <ToggleContext.Provider
       value={{
         isLogin,
         isSignUp,
-        isBooking,
+        isOpen,
+        close,
         toggleLogin,
         toggleSignUp,
         toggleBooking,

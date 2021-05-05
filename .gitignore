@@ -27,3 +27,5 @@ data.js
 .env
 .vscode
 src/components/images
+Makefile
+removed.txt

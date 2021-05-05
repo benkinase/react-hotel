@@ -1,7 +1,7 @@
 import axios from "axios";
 const baseURL = "http://127.0.0.1:8000/api/"; // process.env.API_URL;
 const accessToken = localStorage.getItem("access_token");
-console.log(accessToken);
+
 // process.env.REACT_APP_DJANGO_URL,
 const axiosAPI = axios.create({
   baseURL,
@@ -30,7 +30,7 @@ axiosAPI.interceptors.response.use(
 
     if (
       error.response.status === 401 &&
-      originalRequest.url === baseURL + "token/refresh/"
+      originalRequest.url === baseURL + "auth/jwt/refresh/" // "token/refresh/"
     ) {
       window.location.href = "/";
       return Promise.reject(error);
@@ -48,10 +48,10 @@ axiosAPI.interceptors.response.use(
         // exp date in token is expressed in seconds, while now() returns milliseconds:
         const now = Math.ceil(Date.now() / 1000);
         //console.log(tokenParts.exp);
-
+        //token/refresh/
         if (tokenParts.exp > now) {
           return axiosAPI
-            .post("/token/refresh/", { refresh: refreshToken })
+            .post("/auth/jwt/refresh/", { refresh: refreshToken })
             .then((response) => {
               localStorage.setItem("access_token", response.data.access);
               localStorage.setItem("refresh_token", response.data.refresh);

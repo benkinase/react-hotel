@@ -7,12 +7,31 @@ const AuthContext = createContext(initialState);
 
 function AuthContextProvider(props) {
   const [state, dispatch] = useReducer(AuthReducer, initialState);
-
+  // load user
+  async function loadUser() {
+    dispatch({
+      type: actionTypes.USER_PROFILE_REQUEST,
+      payload: {},
+    });
+    try {
+      const { data } = await axiosAPI.get(`/auth/users/me/`);
+      dispatch({
+        type: actionTypes.USER_PROFILE_SUCCESS,
+        payload: data,
+      });
+    } catch (err) {
+      dispatch({
+        type: actionTypes.USER_PROFILE_FAIL,
+        payload: err.response.data.detail,
+      });
+    }
+  }
+  ///token/obtain/
   async function login(state) {
     const { username } = state;
     dispatch({ type: actionTypes.USER_LOGIN_REQUEST, payload: state });
     try {
-      let { data } = await axiosAPI.post("/token/obtain/", state);
+      let { data } = await axiosAPI.post("/auth/jwt/create/", state);
       let user = { token: data, username };
       //setNewHeaders(data);
       axiosAPI.defaults.headers["Authorization"] = "JWT " + data.access;
@@ -31,7 +50,7 @@ function AuthContextProvider(props) {
     let newUser = JSON.stringify(state);
     dispatch({ type: actionTypes.USER_REGISTER_REQUEST, payload: newUser });
     try {
-      const { data } = await axiosAPI.post("/user/register/", newUser);
+      const { data } = await axiosAPI.post("/auth/users/", newUser);
       dispatch({ type: actionTypes.USER_REGISTER_SUCCESS, payload: data });
     } catch (error) {
       dispatch({
@@ -102,6 +121,7 @@ function AuthContextProvider(props) {
         token: state.token,
         error: state.error,
         loading: state.loading,
+        loadUser,
         login,
         logMeOut,
         register,

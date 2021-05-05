@@ -1,0 +1,9 @@
+export { Login } from "./Login/index";
+export { Register } from "./Register/index";
+export { RoomDetails } from "./RoomDetails/index";
+export { NotFound } from "./NotFound/index";
+export { Footer } from "./Footer/index";
+export { Homepage } from "./Homepage/index";
+export { Reservation } from "./Reservation/index";
+export { Rooms } from "./Rooms/index";
+export { Success } from "./Success";
