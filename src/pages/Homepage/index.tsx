@@ -1,8 +1,8 @@
 import React, { useContext, FC } from "react";
 import { Link } from "react-router-dom";
-import { Banner } from "../../components/Banner";
+import { Banner } from "../../components/UI/Banner";
 import FeaturedRooms from "../../components/FeaturedRooms";
-import { Hero } from "../../components/Hero";
+import { Hero } from "../../components/UI/Hero";
 import Services from "../../components/Services";
 import { ROUTES } from "../../routeConfigs";
 import { RoomContext } from "../../context/RoomContext";

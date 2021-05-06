@@ -1,6 +1,6 @@
 import React, { FC } from "react";
-import { Hero } from "../../components/Hero";
-import { Banner } from "../../components/Banner";
+import { Hero } from "../../components/UI/Hero";
+import { Banner } from "../../components/UI/Banner";
 import { Link } from "react-router-dom";
 import { RoomsContainer } from "../../components/RoomsContainer";
 

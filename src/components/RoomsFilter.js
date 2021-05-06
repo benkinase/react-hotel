@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
 import { RoomContext } from "../context/RoomContext";
-import { Title } from "./Title";
+import { Title } from "./UI/Title";
 //import { IRoom } from "../types";
 
 export const RoomsFilter = ({ sortedRooms }) => {

@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { useState, FC } from "react";
 import {
   CustomContainer,
   Form,
@@ -15,23 +15,30 @@ import { useHistory } from "react-router-dom";
 import { IUser } from "../../types";
 
 export const Login: FC = () => {
+  // destruring redux auth state
   const { error, loading } = useSelector((state: any) => state.auth);
 
+  // instantiate use history and use dispatch hooks
   const history = useHistory();
   const dispatch = useDispatch();
+
+  // user object
   const user: IUser = {
     username: "",
     password: "",
   };
 
-  const [state, setState] = React.useState(user);
+  // local state=> store user object
+  const [state, setState] = useState(user);
 
-  async function handleChange(e: any) {
-    let { name, value } = e.target;
+  // handle input change
+  const handleChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
+    const { name, value } = e.target;
     setState({ ...state, [name]: value });
-  }
+  };
 
-  async function handleLogin(e: any) {
+  // handle login dispatch
+  async function handleLogin(e: React.SyntheticEvent) {
     e.preventDefault();
     const { username, password } = state;
     if (!username || !password || error) {

@@ -1,6 +1,6 @@
 import React from "react";
-import LoadingGif from "../images/gif/loading-gear.gif";
-import { Wrapper, Image, H4 } from "./index";
+import LoadingGif from "../../images/gif/loading-gear.gif";
+import { Wrapper, Image, H4 } from "../index";
 
 export const Loading: React.FC = () => {
   return (
@@ -10,10 +10,12 @@ export const Loading: React.FC = () => {
     </Wrapper>
   );
 };
-type Props = {
+
+// error component
+type ErrorProps = {
   title: string;
 };
-export const Error: React.FC<Props> = ({ title }) => {
+export const Error: React.FC<ErrorProps> = ({ title }) => {
   return (
     <Wrapper className='loading'>
       <H4>{title} rooms</H4>

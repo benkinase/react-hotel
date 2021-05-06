@@ -36,12 +36,13 @@ export const login = (user) => async (dispatch) => {
 
 // register new user
 export const register = (newUser) => async (dispatch) => {
+  console.log(newUser);
   dispatch({
     type: Action.REGISTER_REQUEST,
     payload: newUser,
   });
   try {
-    const { data } = await axiosAPI.post("/auth/users/", newUser);
+    const { data } = await axiosAPI.post("/rest-auth/registration/", newUser);
     dispatch({ type: Action.REGISTER_SUCCESS, payload: data });
   } catch (error) {
     dispatch({

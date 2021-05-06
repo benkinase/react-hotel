@@ -1,5 +1,5 @@
 import React from "react";
-import { Title } from "./Title";
+import { Title } from "./UI/Title";
 import { RoomContext } from "../context/RoomContext";
 import { Loading } from "./Loading";
 import { Room } from "./Room";

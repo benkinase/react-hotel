@@ -3,10 +3,6 @@ import { Link } from "react-router-dom";
 import { Banner, Hero } from "../../components";
 import { ROUTES } from "../../routeConfigs";
 
-type SuccessProps = {
-  msg: string | undefined;
-};
-
 export const Success: React.FC = () => {
   const statusType = "Success!";
   const statusMsg = "Thank you for choosing us!";

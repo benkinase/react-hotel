@@ -1,17 +1,17 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { FaCocktail, FaHiking, FaShuttleVan, FaBeer } from "react-icons/fa";
-import { Title } from "./Title";
-import { Span, Paragraph, H6 } from "./index";
+import { Title } from "../UI/Title";
+import { Span, Paragraph, H6 } from "../index";
 
-type TService = {
+type Service = {
   icon?: JSX.Element;
   title?: string;
   info?: string;
 };
 
 interface IServices {
-  services?: TService[];
+  services?: Service[];
 }
 
 export default class Services extends Component<IServices> {
@@ -44,12 +44,12 @@ export default class Services extends Component<IServices> {
     ],
   };
   render() {
-    const serviceTitle = "Our Services";
+    // destruring state
     const { services } = this.state;
     return (
       <ContainerService>
         <section className='services'>
-          <Title title={serviceTitle} />
+          <Title title='Our Services' />
           <div className='services-center'>
             {services &&
               services.map((service, index) => {
@@ -67,7 +67,7 @@ export default class Services extends Component<IServices> {
     );
   }
 }
-
+// container witn embedded styles
 const ContainerService = styled.div`
   /* services */
   .services {

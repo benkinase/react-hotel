@@ -20,9 +20,6 @@ export const RoomsList: FC<RoomListProps> = ({ rooms }) => {
 };
 
 const ContainerList = styled.div`
-  // .rooms-list {
-
-  // }
   padding: 5rem 0;
   .rooms-list-center {
     width: 80vw;

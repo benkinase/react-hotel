@@ -1,7 +1,22 @@
 import React from "react";
 import styled from "styled-components";
-import { Wrapper, H4 } from "./index";
+import { Wrapper, H4 } from "../index";
 
+type TitleProps = {
+  title: string;
+};
+export const Title: React.FC<TitleProps> = ({ title }) => {
+  return (
+    <ContainerTitle>
+      <Wrapper className='section-title'>
+        <H4>
+          <strong className='text-blue'>{title}</strong>
+        </H4>
+      </Wrapper>
+    </ContainerTitle>
+  );
+};
+//container with embedded styles
 const ContainerTitle = styled.div`
   .section-title {
     font-family: "Poppins", sans-serif;
@@ -21,18 +36,3 @@ const ContainerTitle = styled.div`
     background: var(--primaryColor);
   }
 `;
-
-type TitleProps = {
-  title: string;
-};
-export const Title: React.FC<TitleProps> = ({ title }) => {
-  return (
-    <ContainerTitle>
-      <Wrapper className='section-title'>
-        <H4>
-          <strong className='text-blue'>{title}</strong>
-        </H4>
-      </Wrapper>
-    </ContainerTitle>
-  );
-};

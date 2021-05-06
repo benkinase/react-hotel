@@ -1,8 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Banner } from "../../components/Banner";
+//import { RouteComponentProps } from 'react-router-dom';
+import { Hero } from "../../components/UI/Hero";
+import { Banner } from "../../components/UI/Banner";
 import { NotFoundContainer, Paragraph, Span } from "../../components";
-import { Hero } from "../../components/Hero";
+
 import { ROUTES } from "../../routeConfigs";
 
 export const NotFound = (props) => {

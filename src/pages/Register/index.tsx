@@ -1,4 +1,5 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
+import { useHistory } from "react-router-dom";
 import {
   CustomContainer,
   Form,
@@ -12,33 +13,40 @@ import { register } from "../../redux/actions/auth";
 import { useDispatch, useSelector } from "react-redux";
 import { INewUser } from "../../types";
 
-export const Register: FC = (props) => {
+export const Register: FC = () => {
+  // destruring redux register state
   const { error, loading } = useSelector((state: any) => state.register);
 
+  // instantiate use history and use dispatch hooks
+  const history = useHistory();
   const dispatch = useDispatch();
-
+  // new user object
   const newUser: INewUser = {
     username: "",
     email: "",
-    password: "",
-    re_password: "",
+    password1: "",
+    password2: "",
   };
-  const [state, setState] = React.useState(newUser);
+  // local state => store new user object
+  const [state, setState] = useState(newUser);
 
-  async function handleChange(e: any) {
+  // handle input change
+  async function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = e.target;
     setState({ ...state, [name]: value });
   }
-  async function handleSignup(e: any) {
+  // handle sign up event
+  async function handleSignup(e: React.SyntheticEvent) {
     e.preventDefault();
-    const { password, re_password } = state;
+    const { password1, password2 } = state;
 
-    if (password !== re_password || error) {
+    if (password1 !== password2 || error) {
       return false;
     }
 
     dispatch(register(state));
     setState(newUser);
+    history.push("/success");
   }
 
   return (
@@ -69,17 +77,17 @@ export const Register: FC = (props) => {
               />
               <Input
                 type='password'
-                name='password'
+                name='password1'
                 placeholder='Enter password'
-                value={state.password}
+                value={state.password1}
                 onChange={handleChange}
                 required
               />
               <Input
                 type='password'
-                name='re_password'
+                name='password2'
                 placeholder='Enter confirm password'
-                value={state.re_password}
+                value={state.password2}
                 onChange={handleChange}
                 required
               />

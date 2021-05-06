@@ -20,7 +20,7 @@ export const Banner: FC<BannerProps> = ({ children, title, subtitle }) => {
     </ContainerBanner>
   );
 };
-
+//container with embedded styles
 const ContainerBanner = styled.div`
   /* Banner */
   .banner {

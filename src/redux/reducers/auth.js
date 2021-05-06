@@ -43,10 +43,8 @@ export function loginReducer(state = initialState, { type, payload }) {
       });
 
     case Action.LOGOUT_SUCCESS:
-      //localStorage.removeItem("user");
       return {};
     case Action.LOGOUT_FAIL:
-      //localStorage.removeItem("user");
       return {};
     default:
       return state;

@@ -25,8 +25,13 @@ export interface ReservationProps {
   isOpen: boolean;
 }
 export const Reservation: FC<ReservationProps> = (props) => {
+  // destructuring redux auth state
   const { pk: userId, token } = useSelector((state: any) => state.auth);
+
+  // destructuring props from room details
   const { room, close, isOpen } = props;
+
+  // destructuiring room object
   const { hotel, capacity, id: roomId, price } = room;
 
   const initialState = {
@@ -34,7 +39,7 @@ export const Reservation: FC<ReservationProps> = (props) => {
     room: roomId,
     hotel: hotel,
   };
-
+  // local state=> manage reservation inputs
   const [state, setState] = useState(initialState);
   const [startDate, setStart] = useState<Date>(new Date());
   const [endDate, setEnd] = useState<Date>(new Date());
@@ -45,21 +50,27 @@ export const Reservation: FC<ReservationProps> = (props) => {
   const [error, setHasError] = useState<any>("");
   const [loading, setLoading] = useState<boolean>(false);
 
+  // instantiate use history hook
   const history = useHistory();
+
+  // using use effect hook to update current charges
   useEffect(() => {
     const getTotalCharges = () => {
       const difference = endDate.getTime() - startDate.getTime();
+
       if (difference < 1) return;
       const numberOfDays = difference / (1000 * 3600 * 24);
       setDays(numberOfDays);
+
       const total_guests = guests ? +guests : 1;
       const total_charges = total_guests * numberOfDays * price;
+
       setCharges(+total_charges.toFixed(0));
     };
     getTotalCharges();
   }, [guests, startDate, price, endDate]);
 
-  async function handleBooking(e: any) {
+  async function handleBooking(e: React.SyntheticEvent) {
     e.preventDefault();
 
     // reservation object
@@ -73,7 +84,7 @@ export const Reservation: FC<ReservationProps> = (props) => {
       charges: +charges,
       paid: true,
     };
-
+    // sanitize reservation object
     if (!reservation.guest) {
       setHasError(`Please login to complete booking`);
       return false;
@@ -97,11 +108,12 @@ export const Reservation: FC<ReservationProps> = (props) => {
     }
 
     try {
+      // dispatch reservation
       const response: any = await axiosAPI2(token).post(
         "/api/booking/",
         reservation
       );
-
+      // redirect if res is ok
       if (response.status === 201) {
         setLoading(false);
         // reset state
@@ -128,7 +140,7 @@ export const Reservation: FC<ReservationProps> = (props) => {
           <i className='fas fa-times' onClick={() => close()}></i>
           {error && <Paragraph className='error-msg'>{error}</Paragraph>}
           <Paragraph>
-            ${price} per night | Capacity: {capacity}
+            ${price} per night | capacity: {capacity}
           </Paragraph>
 
           <Form onSubmit={handleBooking}>

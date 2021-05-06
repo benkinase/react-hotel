@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 //import defaultBcg from "../images/room-1.jpeg";
-import { Banner } from "../../components/Banner";
+import { Banner } from "../../components/UI/Banner";
 import {
   Button,
   Wrapper,
@@ -14,20 +14,20 @@ import {
 import { ROUTES } from "../../routeConfigs";
 import DynamicHero from "../../components/DynamicHero";
 import { RoomContext } from "../../context/RoomContext";
-import { ToggleContext } from "../../context/modal/ModalContext";
+import { ToggleContext } from "../../context/toggle/ToggleContext";
 import { Reservation } from "../index";
 import styled, { keyframes } from "styled-components";
 
 export function RoomDetails(props) {
-  //const { token } = useContext(AuthContext);
   const { getRoomDetails } = useContext(RoomContext);
   const { isLogin, isOpen, close, toggleBooking } = useContext(ToggleContext);
 
-  //toggle RESERVE
+  // initial slug state
   let initialState = {
     slug: props.match.params.slug,
     //defaultBcg: defaultBcg,
   };
+  // manage slug change => retriest current slug from params
   const [state] = useState(initialState);
 
   // fetch single room
@@ -58,7 +58,7 @@ export function RoomDetails(props) {
     images,
   } = room;
 
-  // promo
+  // promo deduction
   let promo_price = price * 0.95;
 
   // grab one image as main::array spread operator
@@ -69,6 +69,7 @@ export function RoomDetails(props) {
     return random;
   }
 
+  // random image on page reload
   let randomImg = images[generateRandomImage()];
 
   return (
@@ -88,7 +89,6 @@ export function RoomDetails(props) {
         </Wrapper>
       </section>
       <Wrapper className='booking'>
-        {/* <span>Booking</span> */}
         {!isOpen && !isLogin && (
           <Button
             width='100%'
@@ -141,6 +141,7 @@ export function RoomDetails(props) {
   );
 }
 
+// slide down animation
 const showUp = keyframes`
 0%{
   opacity:0;
@@ -151,34 +152,28 @@ const showUp = keyframes`
   transform:translate(0px)
 }
 `;
-
+// container with styles
 const ContainerDetails = styled.div`
   .single-room {
     padding: 5rem 0 0 0;
   }
 
-  @media screen and(max-width:500px) {
-    .single-room-images {
-      width: 80vw;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr;
-      grid-template-rows: 200px;
-      //grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-      grid-row-gap: 2rem;
-      grid-column-gap: 50px;
-    }
-  }
   .single-room-images {
     width: 80vw;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: 200px;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: 1fr;
     grid-row-gap: 2rem;
-    grid-column-gap: 50px;
+    grid-column-gap: 40px;
   }
+
+  @media screen and (min-width: 776px) {
+    .single-room-images {
+      width: 90vw;
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
   .single-room-images img {
     width: 100%;
     display: block;

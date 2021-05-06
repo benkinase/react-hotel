@@ -5,7 +5,7 @@ import "./index.css";
 import App from "./App";
 
 import { RoomContextProvider } from "./context/RoomContext";
-import { ToggleContextProvider } from "./context/modal/ModalContext";
+import { ToggleContextProvider } from "./context/toggle/ToggleContext";
 import * as serviceWorker from "./serviceWorker";
 import { Provider } from "react-redux";
 import store from "./redux/store";

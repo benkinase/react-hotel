@@ -40,6 +40,7 @@ export const Footer: React.FC = () => {
   );
 };
 
+// container with embedded styles
 const ContainerFooter = styled.div`
   background-color: var(--mainBlack);
   height: auto;

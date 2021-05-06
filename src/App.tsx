@@ -10,21 +10,20 @@ import { AppWrapper } from "./components";
 function App() {
   const { token } = useSelector((state: any) => state.auth);
 
-  // instantiate dispatch
+  // instantiate dispatch hook
   const dispatch = useDispatch();
 
-  // load authenticated user
+  // fetch authenticated user details
   useEffect(() => {
     if (token) {
       dispatch(loadUser(token));
     }
   }, [token, dispatch]);
 
-  // page title
+  // extract title from current url
   const location = useLocation();
   const curLocation = location.pathname.split("/")[1];
 
-  // extract title from url
   let title: string;
   if (curLocation) {
     title = `${curLocation[0].toUpperCase()}${curLocation.slice(1)}`;

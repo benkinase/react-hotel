@@ -28,5 +28,5 @@ export {
 
 export { Loading, Error } from "./Loading";
 export { Room } from "./Room";
-export { Hero } from "./Hero";
-export { Banner } from "./Banner";
+export { Hero } from "./UI/Hero";
+export { Banner } from "./UI/Banner";

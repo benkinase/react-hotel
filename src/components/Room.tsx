@@ -1,17 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import defaultImg from "../images/room-1.jpeg";
-//import PropTypes from "prop-types";
 import styled from "styled-components";
 import { IRoom } from "../types";
 
 type RoomProps = {
   room: IRoom;
 };
+
 export const Room: React.FC<RoomProps> = ({ room }) => {
-  //console.log(room);
+  // destructuring room prop
   const { name, images, slug, price } = room;
-  //console.log(slug);
+
   return (
     <ContainerRoom>
       <article className='room'>
@@ -31,15 +31,7 @@ export const Room: React.FC<RoomProps> = ({ room }) => {
   );
 };
 
-// Room.propTypes = {
-//   room: PropTypes.shape({
-//     name: PropTypes.string.isRequired,
-//     slug: PropTypes.string.isRequired,
-//     images: PropTypes.arrayOf(PropTypes.string).isRequired,
-//     price: PropTypes.number.isRequired,
-//   }),
-// };
-
+//container with embedded styles
 const ContainerRoom = styled.div`
   /* room */
   .room {

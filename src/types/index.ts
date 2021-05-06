@@ -30,8 +30,8 @@ export interface IReservation {
   paid: boolean;
 }
 
-// context state
-export type RoomContextState = {
+// context state type
+export interface RoomContextState {
   rooms: IRoom[];
   sortedRooms: IRoom[];
   featuredRooms: IRoom[];
@@ -48,7 +48,7 @@ export type RoomContextState = {
   pets: boolean;
   handleChange?: (e: any) => void;
   getRoomDetails?: (slug: string | undefined) => void;
-};
+}
 // user interface
 export interface IUser {
   username: string;
@@ -58,11 +58,11 @@ export interface IUser {
 // new user interface
 export interface INewUser {
   username: string;
+  email: string;
   // first_name?: string;
   // last_name?: string;
-  password: string;
-  email: string;
-  re_password: string;
+  password1: string;
+  password2: string;
 }
 // redux auth state
 export interface authState {

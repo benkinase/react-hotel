@@ -1,25 +1,7 @@
 import React, { Component, createContext } from "react";
 
-const contextDefaultValues = {
-  rooms: [],
-  sortedRooms: [],
-  featuredRooms: [],
-  isLoading: true,
-  error: "",
-  type: "alle",
-  capacity: 1,
-  price: 0,
-  minPrice: 0,
-  maxPrice: 0,
-  minSize: 0,
-  maxSize: 0,
-  breakfast: false,
-  pets: false,
-  handleChange: () => {},
-  getRoomDetails: () => {},
-};
-
-const RoomContext = createContext(contextDefaultValues);
+//
+const RoomContext = createContext();
 
 class RoomContextProvider extends Component {
   constructor(props) {
@@ -73,22 +55,21 @@ class RoomContextProvider extends Component {
         maxPrice,
         maxSize,
       });
-      //after
     } catch (error) {
       this.setState({ error: error.message });
     }
   }
-
+  // fetch hotel data on component mount
   componentDidMount() {
     this.getDjangoHotelData();
   }
-
+  // get a single room with using slug
   getRoomDetails(slug) {
     let tempRooms = this.state.rooms;
     const room = tempRooms.find((room) => room.slug === slug);
     return room;
   }
-
+  // custom function to format received backend data
   djangoDataFormatter(items) {
     let tempItems = items.map((item) => {
       let id = item.id;
@@ -106,6 +87,7 @@ class RoomContextProvider extends Component {
 
     this.setState({ [name]: value }, this.filterRooms);
   }
+  // filter rooms based on different properties
   filterRooms = () => {
     let {
       rooms,

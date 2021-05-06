@@ -19,6 +19,8 @@ export const ROUTES = {
   REGISTER: "/register",
   RESERVE: "/room/reserve/:slug",
 };
+
+// array of route objects
 export const routes = [
   {
     path: "/",
@@ -63,7 +65,7 @@ export const routes = [
     title: "404-page",
   },
 ];
-// map route objects
+// map route objects and return Route with corresponding properties
 export const routeComponents = routes.map(({ path, component }, key) => {
   return <Route exact path={path} component={component} key={key} />;
 });
