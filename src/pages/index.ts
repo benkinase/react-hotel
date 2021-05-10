@@ -7,3 +7,5 @@ export { Homepage } from "./Homepage/index";
 export { Reservation } from "./Reservation/index";
 export { Rooms } from "./Rooms/index";
 export { Success } from "./Success";
+export { Checkout } from "./Checkout";
+export { Profile } from "./Profile";

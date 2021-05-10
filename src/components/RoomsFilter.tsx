@@ -1,12 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext, FC } from "react";
 import styled from "styled-components";
 import { RoomContext } from "../context/RoomContext";
+import { IRoom } from "../types";
 import { Title } from "./UI/Title";
-//import { IRoom } from "../types";
 
-export const RoomsFilter = ({ sortedRooms }) => {
-  //console.log(sortedRooms);
-  // using react hook
+export const RoomsFilter: FC = () => {
+  // get state values from context
   const context = useContext(RoomContext);
   const {
     handleChange,
@@ -23,26 +22,26 @@ export const RoomsFilter = ({ sortedRooms }) => {
   } = context;
 
   //get unique rooms based on type
-  let types = [...new Set(sortedRooms.map((data) => data.room_type))];
+  let types = [...new Set(rooms.map((data: IRoom) => data.room_type))];
   // add all
   types = ["alle", ...types];
   // map to jsx
-  types = types.map((item, index) => (
+  types = types?.map((item: any, index) => (
     <option key={index} value={item}>
       {item}
     </option>
   ));
   // get unique rooms based capacity
-  let people = [...new Set(sortedRooms.map((data) => data.capacity))];
-  people = people.map((item, index) => (
+  let people = [...new Set(rooms.map((data: IRoom) => data.capacity))];
+  people = people.map((item: any, index) => (
     <option key={index} value={item}>
       {item}
     </option>
   ));
 
   // min and max size from room sizes
-  const defaultMinSize = Math.min(...rooms.map((room) => room.size));
-  const defaultMaxSize = Math.max(...rooms.map((room) => room.size));
+  const defaultMinSize = Math.min(...rooms.map((room: IRoom) => room.size));
+  const defaultMaxSize = Math.max(...rooms.map((room: IRoom) => room.size));
 
   return (
     <ContainerFilter>

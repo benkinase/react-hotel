@@ -22,12 +22,14 @@ export interface IRoom {
 export interface IReservation {
   check_in_date: any;
   checkout_date: any;
-  guest: number;
+  guest?: number;
   room: number;
+  room_item?: IRoom;
   hotel: string;
   no_of_guests: number;
   charges: number;
-  paid: boolean;
+  paid?: boolean;
+  stripe_token?: string;
 }
 
 // context state type
@@ -66,8 +68,8 @@ export interface INewUser {
 }
 // redux auth state
 export interface authState {
-  token: string;
+  token: string | null;
   isAuth: boolean;
-  error: any;
-  loading: boolean;
+  error?: any;
+  loading?: boolean;
 }

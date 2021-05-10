@@ -6,6 +6,7 @@ import {
   Button,
   Wrapper,
   H3,
+  H4,
   H6,
   Span,
   Image,
@@ -129,7 +130,7 @@ export function RoomDetails(props) {
         </Wrapper>
       </section>
       <section className='room-extras'>
-        <H6>extras </H6>
+        <H4>extras </H4>
         <ul className='extras'>
           {extras[0].extra.split(",").map((item, index) => (
             <li key={index}>✿ {item}</li>

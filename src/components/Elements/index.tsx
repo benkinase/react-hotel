@@ -29,7 +29,7 @@ export const Input = styled.input`
   }
   &:focus {
     outline: none;
-    color: var(---tertiaryText);
+    //color: var(---tertiaryText);
   }
 `;
 

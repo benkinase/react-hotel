@@ -1,4 +1,4 @@
-import React, { useState, useEffect, FC } from "react";
+import React, { useState, useEffect, FC, SyntheticEvent } from "react";
 
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -18,6 +18,7 @@ import {
   Paragraph,
   Label,
 } from "../../components";
+//import { StripePay } from "../Payment";
 
 export interface ReservationProps {
   room: IRoom;
@@ -70,8 +71,8 @@ export const Reservation: FC<ReservationProps> = (props) => {
     getTotalCharges();
   }, [guests, startDate, price, endDate]);
 
-  async function handleBooking(e: React.SyntheticEvent) {
-    e.preventDefault();
+  async function handleBooking(e: SyntheticEvent) {
+    //e.preventDefault();
 
     // reservation object
     let reservation: IReservation = {
@@ -79,19 +80,20 @@ export const Reservation: FC<ReservationProps> = (props) => {
       checkout_date: getBookingDate(endDate),
       guest: state.guest,
       room: state.room,
+      //room_item: room,
       hotel: state.hotel,
       no_of_guests: +guests,
       charges: +charges,
-      paid: true,
+      //stripe_token: paymentId,
     };
     // sanitize reservation object
-    if (!reservation.guest) {
+    if (!state.guest) {
       setHasError(`Please login to complete booking`);
       return false;
     }
     // using the raw dates
     if (endDate.getTime() <= startDate.getTime()) {
-      setHasError(`End date must be AFTER the start date.`);
+      setHasError(`End date must be AFTER the start date`);
       return false;
     }
     if (
@@ -155,6 +157,7 @@ export const Reservation: FC<ReservationProps> = (props) => {
               required
               width='80%'
             />
+
             <Wrapper className='date-picking'>
               <Wrapper className='check-in '>
                 <Label>Check in</Label>
@@ -175,6 +178,7 @@ export const Reservation: FC<ReservationProps> = (props) => {
             </Wrapper>
             <Paragraph>Total days: {Math.ceil(days)}</Paragraph>
             <Paragraph>Total charges: €{charges}</Paragraph>
+            {/* <StripePay handleBooking={handleBooking} /> */}
             <Button type='submit'>
               {loading ? "Booking..." : "Pay & Book"}
             </Button>

@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import defaultImg from "../images/room-1.jpeg";
 import styled from "styled-components";
-import { IRoom } from "../types";
+import defaultImg from "../../images/room-1.jpeg";
+import { IRoom } from "../../types";
 
 type RoomProps = {
   room: IRoom;

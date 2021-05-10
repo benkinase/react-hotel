@@ -32,7 +32,7 @@ class Navbar extends Component {
     const logoutLink = (
       <>
         <li onClick={() => logout()}>logOut</li>
-        <li>{this.props.username}</li>
+        <NavLink to={ROUTES.PROFILE}>{this.props.username}</NavLink>
       </>
     );
 
@@ -52,6 +52,7 @@ class Navbar extends Component {
               className={this.state.isOpen ? "nav-links show-nav" : "nav-links"}
             >
               <NavLink to={ROUTES.ROOMS}>rooms</NavLink>
+              <NavLink to={ROUTES.CHECKOUT}>checkout</NavLink>
               {!token && authLinks}
               {token && logoutLink}
             </ul>

@@ -1,17 +1,19 @@
-import React, { FC } from "react";
+import React, { FC, useContext } from "react";
+import { RoomContext } from "../context/RoomContext";
 import styled from "styled-components";
 import { Room } from "./Room";
 import { IRoom } from "../types";
 
 type RoomListProps = {
-  rooms: IRoom[];
+  sortedRooms: IRoom[];
 };
 
-export const RoomsList: FC<RoomListProps> = ({ rooms }) => {
+export const RoomsList: FC = () => {
+  const { sortedRooms } = useContext(RoomContext);
   return (
     <ContainerList>
       <div className='rooms-list-center'>
-        {rooms.map((item) => {
+        {sortedRooms.map((item: IRoom) => {
           return <Room key={item.id} room={item} />;
         })}
       </div>

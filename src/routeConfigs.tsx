@@ -9,6 +9,8 @@ import {
   NotFound,
   Rooms,
   Success,
+  Checkout,
+  Profile,
 } from "./pages/index";
 
 export const ROUTES = {
@@ -17,7 +19,9 @@ export const ROUTES = {
   ROOM: "/rooms/:slug",
   LOGIN: "/login",
   REGISTER: "/register",
-  RESERVE: "/room/reserve/:slug",
+  RESERVE: "/room/reserve",
+  CHECKOUT: "/room/checkout",
+  PROFILE: "/profile",
 };
 
 // array of route objects
@@ -40,6 +44,7 @@ export const routes = [
     name: "room-details",
     title: "room-page",
   },
+
   {
     path: "/register",
     component: Register,
@@ -53,10 +58,22 @@ export const routes = [
     title: "login-page",
   },
   {
+    path: "/profile",
+    component: Profile,
+    name: "profile",
+    title: "profile-page",
+  },
+  {
     path: "/success",
     component: Success,
     name: "success",
     title: "success-page",
+  },
+  {
+    path: "/room/checkout",
+    component: Checkout,
+    name: "checkout",
+    title: "checkout-page",
   },
   {
     path: "*",
