@@ -1,104 +1,147 @@
 @import url("https://fonts.googleapis.com/css2?family=Philosopher:ital@1&family=Poppins:wght@300&display=swap");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css");
 
 :root {
-  --mainBlue: #170f8b;
-  --Blue: #03042e;
-  --lightBlue: #0fa3f8;
-  --mainWhite: #f5f5ee;
-  --mainDark: #232528;
-  --mainYellow: #ffd000;
-  --lightRed: rgb(223, 139, 124);
+  --primaryColor: #acbdc9;
+  --mainWhite: #fdfdfd;
+  --offWhite: #f7f7f7;
+  --mainBlack: #222e38;
+  --mainGrey: #a7b2be;
+  --darkGrey: #e0e0e0;
 
-  /*MODAL, LOGIN, REGISTER*/
-  --primaryColor: #ebfffd;
-  --secondaryColor: rgb(255, 255, 255);
-  --tertiaryColor: hsl(0, 36%, 91%);
-  --quaternaryColor: rgb(243, 241, 241);
+  --nice-red: #eb3232;
+  --nice-yellow: #e29e0b;
+  --nice-purple: #572e57;
 
-  --borderColor: hsl(0, 0%, 76%);
-  /*text*/
-  --primaryText: hsl(253, 97%, 13%);
-  --secondaryText: hsl(350, 100%, 42%);
-  --tertiaryText: rgb(2, 9, 44);
-  --quaternaryText: hsl(214, 95%, 30%);
+  --social-icon: var(--nice-yellow);
+  --formBgColor: var(--mainGrey);
+  --formColor: var(--mainWhite);
 
-  /*button*/
-
-  --buttonBgColor: #ccb38f;
-  --buttonBgColor1: rgb(198, 209, 214);
-  --buttonColor: hsl(219, 92%, 19%);
-  --buttonColor1: rgb(241, 206, 8);
-  --buttonHoverColor: #f0d2a9;
-  --buttonHoverColor1: hsl(209, 88%, 23%);
-
-  --formBgColor: rgb(69, 90, 90);
-  --formColor: rgb(252, 232, 232);
-
-  --footerBgColor: hsl(12, 77%, 42%);
-  --footerColor: hsla(199, 93%, 89%, 0.993);
+  --buttonBgColor: var(--nice-yellow);
+  --buttonText: var(--mainBlack);
 
   --mainTransition: all 0.3s linear;
+  --mainSpacing: 3px;
+  --lightShadow: 2px 5px 3px 0px rgba(0, 0, 0, 0.5);
+  --darkShadow: 4px 10px 5px 0px rgba(0, 0, 0, 0.5);
 }
 
-/*REGISTER & LOGIN components*/
-.contact {
-  background-color: var(--formBgColor);
-  padding-bottom: 30px;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-.form-container {
-  width: 100%;
+
+::selection {
+  background-color: var(--nice-purple);
+  color: var(--nice-yellow);
 }
-.form-container h3 {
+
+/*Fire force*/
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--nice-purple) rgba(var(--mainBlack), 0.5);
+}
+/*Chrome, Safari*/
+*::-webkit-scrollbar {
+  width: 15px;
+}
+*::-webkit-scrollbar-track {
+  background-color: rgb(86, 88, 92);
+}
+*::-webkit-scrollbar-thumb {
+  background-color: var(--darkGrey);
+  border-radius: 10px;
+  border: 3px solid var(--nice-purple);
+}
+/* globals */
+body {
+  padding-top: 66px;
+  color: var(--mainBlack);
+  background: var(--mainWhite);
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family: "Poppins", sans-serif;
+  line-height: 1.4;
+}
+
+h1 {
+  font-size: 3em;
+  line-height: 1;
+  margin-bottom: 0.5em;
+}
+h2 {
+  font-size: 2em;
+  margin-bottom: 0.75em;
+}
+h3 {
+  font-size: 1.5em;
+  line-height: 1;
+  margin-bottom: 1em;
+}
+h4 {
+  font-size: 1.2em;
+  line-height: 1.25;
+  margin-bottom: 1.25em;
+}
+h5,
+h6 {
+  font-size: 1em;
+  font-weight: bold;
+  margin-bottom: 1.5em;
+}
+
+.btn-primary {
+  display: inline-block;
+  text-decoration: none;
+  letter-spacing: var(--mainSpacing);
+  color: var(--mainBlack);
+  background: var(--primaryColor);
+  padding: 0.4rem 0.9rem;
+  border: 3px solid var(--primaryColor);
+  transition: var(--mainTransition);
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.btn-primary:hover {
+  background: transparent;
+  color: var(--primaryColor);
+}
+.loading {
+  text-transform: capitalize;
   text-align: center;
-  margin-top: 10px !important;
+  margin-top: 3rem;
+}
+.error {
+  text-align: center;
+  text-transform: uppercase;
+  margin: 2rem 0;
+}
+.empty-search {
+  text-align: center;
+  text-transform: capitalize;
+  margin: 2rem 0;
+  padding: 1rem;
+  letter-spacing: var(--mainSpacing);
 }
 
-.form {
+/* Hero */
+.defaultHero,
+.roomsHero {
+  min-height: calc(100vh - 66px);
+  background: url("./images/defaultBcg1.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 6px;
-  border-radius: 5px;
-  color: var(--tertiaryText);
 }
-.input-field {
-  width: 80%;
-  padding: 10px;
-  background-color: var(--formColor);
-  border-radius: 1px;
-  border: 1px solid var(--borderColor);
-  font-size: 18px;
-  color: var(--tertiaryText);
-  margin-bottom: 5px;
+.roomsHero {
+  min-height: 60vh;
+  background-image: url("./images/room-1.jpeg");
+  background-color: transparent;
+  background-blend-mode: multiply;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
-.input-field::placeholder {
-  padding: 5px;
-  color: var(---tertiaryText);
-  opacity: 0.3;
-}
-.input-field:focus {
-  outline: none;
-  color: var(---tertiaryText);
-}
-
-.submit-btn {
-  margin-top: 20px;
-  width: 80%;
-  padding: 10px;
-  text-transform: uppercase;
-  font-weight: 800;
-  letter-spacing: 0.3rem;
-  cursor: pointer;
-  color: var(--buttonColor);
-  background-color: var(--buttonBgColor);
-  transition: var(--mainTransition);
-  border: none;
-}
-.submit-btn:hover {
-  background-color: var(--buttonHoverColor);
-  transition: var(--mainTransition);
-}
-.submit-btn:focus {
-  outline: none;
-}
+/* End of Hero */

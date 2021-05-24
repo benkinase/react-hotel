@@ -24,6 +24,9 @@ yarn-error.log*
 
 #development
 data.js
-.env
 .vscode
 src/components/images
+Makefile
+removed.txt
+todo.md
+headless.js

@@ -1,15 +1,22 @@
 import React, { Component, createContext } from "react";
-//import items from "../data";
-import Client from "../contentful";
+import { API_URL_LIVE } from "../utils";
 
+//
 const RoomContext = createContext();
+
 class RoomContextProvider extends Component {
+  // constructor(props) {
+  //   super(props);
+  //   this.handleChange = this.handleChange.bind(this);
+  //   this.getRoomDetails = this.getRoomDetails.bind(this);
+  // }
   state = {
     rooms: [],
     sortedRooms: [],
     featuredRooms: [],
     isLoading: true,
-    type: "all",
+    error: "",
+    type: "alle",
     capacity: 1,
     price: 0,
     minPrice: 0,
@@ -19,21 +26,28 @@ class RoomContextProvider extends Component {
     breakfast: false,
     pets: false,
   };
+
   async getDjangoHotelData() {
-    const url = "http://127.0.0.1:8000/api/rooms/";
+    const url = `${API_URL_LIVE}/api/rooms/`;
     let headers = {
       "Content-Type": "application/json",
+      Accept: "application/json",
       Authorization: "",
     };
-    try {
-      let res = await fetch(url, { method: "GET", headers });
-      let result = await res.json();
-      let rooms = this.djangoDataFormatter(result);
-      let featuredRooms = rooms.filter((room) => room.featured === true);
 
-      //
+    try {
+      const res = await fetch(url, { method: "GET", headers });
+      const result = await res.json();
+
+      // format result
+      const rooms = this.djangoDataFormatter(result);
+      //filter featued rooms
+      const featuredRooms = rooms.filter((room) => room.featured === true);
+
+      // get max price and size
       let maxPrice = Math.max(...rooms.map((item) => item.price));
       let maxSize = Math.max(...rooms.map((item) => item.size));
+
       this.setState({
         rooms,
         featuredRooms,
@@ -43,63 +57,21 @@ class RoomContextProvider extends Component {
         maxPrice,
         maxSize,
       });
-
-      //after
     } catch (error) {
-      console.log(error);
+      this.setState({ error: error.message });
     }
   }
-
-  getContentfulData = async () => {
-    try {
-      let res = await Client.getEntries({
-        content_type: "homecomingRooms",
-        order: "-fields.price", //"sys.createdAt",
-      });
-      //after
-      let rooms = this.dataFormatter(res.items); //res.items replaces items
-      // console.log(rooms);
-      let featuredRooms = rooms.filter((room) => room.featured === true);
-
-      //
-      let maxPrice = Math.max(...rooms.map((item) => item.price));
-      let maxSize = Math.max(...rooms.map((item) => item.size));
-      this.setState({
-        rooms,
-        featuredRooms,
-        sortedRooms: rooms,
-        isLoading: false,
-        price: maxPrice,
-        maxPrice,
-        maxSize,
-      });
-
-      //after
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
+  // fetch hotel data on component mount
   componentDidMount() {
-    //this.getContentfulData();
     this.getDjangoHotelData();
   }
-
+  // get a single room with using slug
   getRoomDetails = (slug) => {
-    let tempRooms = [...this.state.rooms];
+    let tempRooms = this.state.rooms;
     const room = tempRooms.find((room) => room.slug === slug);
-    return room; //obj---filetr// array
+    return room;
   };
-
-  dataFormatter(items) {
-    let tempItems = items.map((item) => {
-      let id = item.sys.id;
-      let images = item.fields.images.map((image) => image.fields.file.url);
-      let room = { ...item.fields, images, id };
-      return room;
-    });
-    return tempItems;
-  }
+  // custom function to format received backend data
   djangoDataFormatter(items) {
     let tempItems = items.map((item) => {
       let id = item.id;
@@ -110,35 +82,28 @@ class RoomContextProvider extends Component {
     return tempItems;
   }
 
-  handleChange = (event) => {
-    const target = event.target;
+  handleChange = (e) => {
+    const target = e.target;
     const value = target.type === "checkbox" ? target.checked : target.value;
     const name = target.name;
 
     this.setState({ [name]: value }, this.filterRooms);
   };
+  // filter rooms based on different properties
   filterRooms = () => {
-    let {
-      rooms,
-      type,
-      capacity,
-      price,
-      minSize,
-      maxSize,
-      breakfast,
-      pets,
-    } = this.state;
+    let { rooms, type, capacity, price, minSize, maxSize, breakfast, pets } =
+      this.state;
 
     let tempRooms = [...rooms];
 
     // transform values
     // get capacity
     capacity = parseInt(capacity);
-    price = parseInt(price);
+    price = Number(price);
 
     // filter by type
-    if (type !== "all") {
-      tempRooms = tempRooms.filter((room) => room.type === type);
+    if (type !== "alle") {
+      tempRooms = tempRooms.filter((room) => room.room_type === type);
     }
     // filter by capacity
     if (capacity !== 1) {

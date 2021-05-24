@@ -1,24 +1,24 @@
 import React from "react";
 import classes from "./Modal.module.css";
-import classy from "./Backdrop.module.css";
 
 export const Backdrop = (props) => {
-  return props.show ? (
-    <div
-      className={classy.Backdrop}
-      onClick={() => props.toggleModal1(false)}
-    ></div> //
+  const { show, toggleModal1 } = props;
+
+  return show ? (
+    <div className={classes.Backdrop} onClick={() => toggleModal1(false)}></div>
   ) : null;
 };
+
 const modal = (props) => {
+  const { setModalToggled1, show } = props;
   return (
     <>
-      <Backdrop show={props.show} toggleModal1={props.setModalToggled1} />
+      <Backdrop show={show} toggleModal1={setModalToggled1} />
       <div
         className={classes.Modal}
         style={{
-          transform: props.show ? "translateX(0)" : "translateX(-140vh)",
-          opacity: props.show ? 1 : 0,
+          transform: show ? "translateX(0)" : "translateX(-140vh)",
+          opacity: show ? 1 : 0,
         }}
       >
         {props.children}
