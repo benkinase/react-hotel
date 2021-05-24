@@ -1,5 +1,5 @@
 import { ActionTypes as Action } from "./ActionTypes";
-import { axiosAPI, axiosAPI2, setToken } from "../../utils";
+import { axiosAPI } from "../../utils";
 
 // load user
 export const loadUser = (token) => async (dispatch) => {
@@ -8,7 +8,7 @@ export const loadUser = (token) => async (dispatch) => {
     payload: { token },
   });
   try {
-    const { data } = await axiosAPI2(token).get(`/rest-auth/user/`);
+    const { data } = await axiosAPI.get(`api/v1/users/me/`);
     dispatch({ type: Action.LOAD_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
@@ -20,12 +20,12 @@ export const loadUser = (token) => async (dispatch) => {
 
 // log in existing user
 export const login = (user) => async (dispatch) => {
-  console.log(user);
   dispatch({ type: Action.LOGIN_REQUEST, payload: user });
   try {
-    const { data } = await axiosAPI.post("/rest-auth/login/", user);
-    setToken(data);
+    const { data } = await axiosAPI.post("/api/v1/token/login/", user);
+
     dispatch({ type: Action.LOGIN_SUCCESS, payload: data });
+    localStorage.setItem("token", JSON.stringify(data.auth_token));
   } catch (error) {
     dispatch({
       type: Action.LOGIN_FAIL,
@@ -42,7 +42,7 @@ export const register = (newUser) => async (dispatch) => {
     payload: newUser,
   });
   try {
-    const { data } = await axiosAPI.post("/rest-auth/registration/", newUser);
+    const { data } = await axiosAPI.post("/api/v1/users/", newUser);
     dispatch({ type: Action.REGISTER_SUCCESS, payload: data });
   } catch (error) {
     dispatch({

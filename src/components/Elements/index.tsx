@@ -57,7 +57,12 @@ export const Button = styled.button<ButtonProps>`
     outline: none;
   }
 `;
-export const Paragraph = styled.p``;
+type ParaProps = {
+  color?: string;
+};
+export const Paragraph = styled.p<ParaProps>`
+  color: ${(props) => props.color};
+`;
 export const Label = styled.label``;
 export const Span = styled.span``;
 export const Li = styled.li``;

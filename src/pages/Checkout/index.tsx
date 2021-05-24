@@ -6,7 +6,7 @@ import { Input, Button } from "../../components";
 import { axiosAPI2 } from "../../utils";
 
 export const Checkout: FC = () => {
-  const { token, pk: userId } = useSelector((state: any) => state.auth);
+  const { token, id: userId } = useSelector((state: any) => state.auth);
   const statusType = "Checkout";
   const statusMsg = "Thank you for choosing us!";
 
@@ -18,6 +18,8 @@ export const Checkout: FC = () => {
   };
 
   const handleCheckout = async (e: SyntheticEvent) => {
+    e.preventDefault();
+    if (userId) return;
     let check = {
       id: +checkout.id,
       guest: +userId,

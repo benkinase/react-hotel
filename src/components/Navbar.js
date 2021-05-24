@@ -133,7 +133,7 @@ const NavBarContainer = styled.nav`
     cursor: pointer;
     background-color: #ebebe9;
     border-radius: 5px;
-    padding: 0.7rem 0.5rem;
+    padding: 0.3rem;
   }
 
   .show-nav {

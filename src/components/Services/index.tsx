@@ -20,26 +20,22 @@ export default class Services extends Component<IServices> {
       {
         icon: <FaCocktail />,
         title: "free cocktail",
-        info:
-          "Lorem ipsum Harum nemo unde quae earum nulla laboriosam ab cumque sint, officiis asperiores!",
+        info: "Lorem ipsum Harum nemo unde quae earum nulla laboriosam ab cumque sint, officiis asperiores!",
       },
       {
         icon: <FaHiking />,
         title: "All round hiking",
-        info:
-          "Lorem ipsum dolor sit amet consectetur adipisicing elit.  cumque sint, officiis asperiores!",
+        info: "Lorem ipsum dolor sit amet consectetur adipisicing elit.  cumque sint, officiis asperiores!",
       },
       {
         icon: <FaShuttleVan />,
         title: "free shuttle",
-        info:
-          "Lorem ipsum dolor sit amet consectetur adipisicing elit.  asperiores!",
+        info: "Lorem ipsum dolor sit amet consectetur adipisicing elit.  asperiores!",
       },
       {
         icon: <FaBeer />,
         title: "free beer",
-        info:
-          "Harum nemo unde quae earum nulla laboriosam ab cumque sint, officiis asperiores!",
+        info: "Harum nemo unde quae earum nulla laboriosam ab cumque sint, officiis asperiores!",
       },
     ],
   };

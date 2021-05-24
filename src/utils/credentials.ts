@@ -1,14 +1,14 @@
 import axios from "axios";
-//const baseURL = process.env.REACT_APP_DJANGO_BACKEND_ANYWHERE;
-const baseURL = process.env.REACT_APP_DJANGO_BACKEND;
+export const API_URL_LOCAL = process.env.REACT_APP_DJANGO_BACKEND;
+export const API_URL_LIVE = process.env.REACT_APP_DJANGO_BACKEND_ANYWHERE;
 
-// const accessToken = localStorage.getItem("access_token");
+// GET TOKEN FROM LOCALSTORAGE
 let pre_Token = localStorage.getItem("token");
 let token = pre_Token ? JSON.parse(pre_Token) : null;
 
-// process.env.REACT_APP_DJANGO_URL,
+// AXIOS INSTANCE
 export const axiosAPI = axios.create({
-  baseURL: baseURL,
+  baseURL: API_URL_LIVE,
   timeout: 5000,
   headers: {
     Authorization: token ? "Token " + token : null,
@@ -19,7 +19,7 @@ export const axiosAPI = axios.create({
 
 export const axiosAPI2 = (token: string) => {
   return axios.create({
-    baseURL: baseURL,
+    baseURL: API_URL_LIVE,
     timeout: 5000,
     headers: {
       Authorization: `Token ${token}`,
@@ -30,5 +30,5 @@ export const axiosAPI2 = (token: string) => {
 };
 // set token on user login
 export const setToken = (data: any) => {
-  localStorage.setItem("token", JSON.stringify(data.key));
+  localStorage.setItem("token", JSON.stringify(data.auth_token));
 };

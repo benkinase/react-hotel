@@ -31,7 +31,7 @@ export const FormWrapper = styled.main`
 
   box-shadow: var(--lightShadow);
   .main {
-    background-color: var(--formBgColor);
+    background-color: var(--darkGrey);
     padding: 20px 0;
     margin: auto;
     border-radius: 5px;
@@ -56,15 +56,16 @@ export const FormWrapper = styled.main`
 `;
 export const StyledBooking = styled(Wrapper)`
   .reserve {
-    width: 80%;
-    position: fixed;
-    padding: 5px;
-    background-color: var(--formBgColor);
-    transition: all 0.3s 0.3s cubic-bezier(0.17, 0.67, 0.83, 0.67);
-    transform: translateY(-40rem);
     top: 12%;
     left: 10%;
     z-index: 200;
+    width: 80%;
+    position: fixed;
+    padding: 5px;
+    box-shadow: var(--lightShadow);
+    background-color: var(--formBgColor);
+    transition: all 0.3s 0.3s cubic-bezier(0.17, 0.67, 0.83, 0.67);
+    transform: translateY(-40rem);
 
     @media screen and (min-width: 700px) {
       width: 60%;
@@ -74,13 +75,22 @@ export const StyledBooking = styled(Wrapper)`
       width: 25%;
     }
   }
+  label {
+    font-weight: bold;
+    padding-bottom: 5px;
+  }
+  .totals {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    margin-left: -20px;
+  }
   .fa-times {
     //color: var(--mainGrey);
     position: absolute;
     top: 0;
     right: 0;
     padding: 5px 5px 5px 10px;
-
     cursor: pointer;
     font-size: 20px;
     transition: var(--mainTransition);
@@ -113,16 +123,12 @@ export const StyledBooking = styled(Wrapper)`
     .checkout {
       display: flex;
       flex-direction: column;
-      label {
-        font-weight: bold;
-      }
     }
     .picker {
       width: 100%;
       padding: 5px;
     }
   }
-
   .error-msg {
     text-align: center;
     padding: 5px 0px;

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, FC, SyntheticEvent } from "react";
+import React, { useState, useEffect, FC } from "react";
 
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -7,18 +7,18 @@ import { useHistory } from "react-router-dom";
 
 // local imports
 import { IReservation, IRoom } from "../../types";
-import { axiosAPI2, getBookingDate } from "../../utils";
+import { axiosAPI, getBookingDate } from "../../utils";
+import { StripePayment } from "./StripConfig";
+
 import {
   CustomContainer,
   Form,
   Input,
-  Button,
   Booking,
   Wrapper,
   Paragraph,
   Label,
 } from "../../components";
-//import { StripePay } from "../Payment";
 
 export interface ReservationProps {
   room: IRoom;
@@ -27,7 +27,7 @@ export interface ReservationProps {
 }
 export const Reservation: FC<ReservationProps> = (props) => {
   // destructuring redux auth state
-  const { pk: userId, token } = useSelector((state: any) => state.auth);
+  const { id: userId, token } = useSelector((state: any) => state.auth);
 
   // destructuring props from room details
   const { room, close, isOpen } = props;
@@ -49,7 +49,6 @@ export const Reservation: FC<ReservationProps> = (props) => {
   const [days, setDays] = useState<number>(0);
 
   const [error, setHasError] = useState<any>("");
-  const [loading, setLoading] = useState<boolean>(false);
 
   // instantiate use history hook
   const history = useHistory();
@@ -71,9 +70,7 @@ export const Reservation: FC<ReservationProps> = (props) => {
     getTotalCharges();
   }, [guests, startDate, price, endDate]);
 
-  async function handleBooking(e: SyntheticEvent) {
-    //e.preventDefault();
-
+  async function handleBooking(pay_token: any) {
     // reservation object
     let reservation: IReservation = {
       check_in_date: getBookingDate(startDate),
@@ -84,8 +81,10 @@ export const Reservation: FC<ReservationProps> = (props) => {
       hotel: state.hotel,
       no_of_guests: +guests,
       charges: +charges,
-      //stripe_token: paymentId,
+      paid: true,
+      stripe_token: pay_token.id,
     };
+
     // sanitize reservation object
     if (!state.guest) {
       setHasError(`Please login to complete booking`);
@@ -111,13 +110,12 @@ export const Reservation: FC<ReservationProps> = (props) => {
 
     try {
       // dispatch reservation
-      const response: any = await axiosAPI2(token).post(
-        "/api/booking/",
+      const response: any = await axiosAPI.post(
+        "/api/pay/stripe/",
         reservation
       );
       // redirect if res is ok
       if (response.status === 201) {
-        setLoading(false);
         // reset state
         setState(initialState);
         setHasError("");
@@ -129,6 +127,7 @@ export const Reservation: FC<ReservationProps> = (props) => {
       setHasError(error.detail);
     }
   }
+  // toggle class
   let drawClass = "reserve";
 
   if (isOpen) {
@@ -141,12 +140,8 @@ export const Reservation: FC<ReservationProps> = (props) => {
         <Wrapper className={drawClass}>
           <i className='fas fa-times' onClick={() => close()}></i>
           {error && <Paragraph className='error-msg'>{error}</Paragraph>}
-          <Paragraph>
-            ${price} per night | capacity: {capacity}
-          </Paragraph>
-
           <Form onSubmit={handleBooking}>
-            <Label></Label>
+            <Label>Enter number of guests</Label>
             <Input
               type='number'
               name='guests'
@@ -176,12 +171,11 @@ export const Reservation: FC<ReservationProps> = (props) => {
                 />
               </Wrapper>
             </Wrapper>
-            <Paragraph>Total days: {Math.ceil(days)}</Paragraph>
-            <Paragraph>Total charges: €{charges}</Paragraph>
-            {/* <StripePay handleBooking={handleBooking} /> */}
-            <Button type='submit'>
-              {loading ? "Booking..." : "Pay & Book"}
-            </Button>
+            <Wrapper className='totals'>
+              <Paragraph>Total days: {Math.ceil(days)}</Paragraph>
+              <Paragraph>Total charges: €{charges}</Paragraph>
+            </Wrapper>
+            <StripePayment handleBooking={handleBooking} token={token} />
           </Form>
         </Wrapper>
       </Booking>

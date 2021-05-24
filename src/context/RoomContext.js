@@ -1,14 +1,15 @@
 import React, { Component, createContext } from "react";
+import { API_URL_LIVE } from "../utils";
 
 //
 const RoomContext = createContext();
 
 class RoomContextProvider extends Component {
-  constructor(props) {
-    super(props);
-    this.handleChange = this.handleChange.bind(this);
-    this.getRoomDetails = this.getRoomDetails.bind(this);
-  }
+  // constructor(props) {
+  //   super(props);
+  //   this.handleChange = this.handleChange.bind(this);
+  //   this.getRoomDetails = this.getRoomDetails.bind(this);
+  // }
   state = {
     rooms: [],
     sortedRooms: [],
@@ -27,7 +28,7 @@ class RoomContextProvider extends Component {
   };
 
   async getDjangoHotelData() {
-    const url = `${process.env.REACT_APP_DJANGO_BACKEND}/api/rooms`;
+    const url = `${API_URL_LIVE}/api/rooms/`;
     let headers = {
       "Content-Type": "application/json",
       Accept: "application/json",
@@ -37,6 +38,7 @@ class RoomContextProvider extends Component {
     try {
       const res = await fetch(url, { method: "GET", headers });
       const result = await res.json();
+
       // format result
       const rooms = this.djangoDataFormatter(result);
       //filter featued rooms
@@ -64,11 +66,11 @@ class RoomContextProvider extends Component {
     this.getDjangoHotelData();
   }
   // get a single room with using slug
-  getRoomDetails(slug) {
+  getRoomDetails = (slug) => {
     let tempRooms = this.state.rooms;
     const room = tempRooms.find((room) => room.slug === slug);
     return room;
-  }
+  };
   // custom function to format received backend data
   djangoDataFormatter(items) {
     let tempItems = items.map((item) => {
@@ -80,32 +82,24 @@ class RoomContextProvider extends Component {
     return tempItems;
   }
 
-  handleChange(e) {
+  handleChange = (e) => {
     const target = e.target;
     const value = target.type === "checkbox" ? target.checked : target.value;
     const name = target.name;
 
     this.setState({ [name]: value }, this.filterRooms);
-  }
+  };
   // filter rooms based on different properties
   filterRooms = () => {
-    let {
-      rooms,
-      type,
-      capacity,
-      price,
-      minSize,
-      maxSize,
-      breakfast,
-      pets,
-    } = this.state;
+    let { rooms, type, capacity, price, minSize, maxSize, breakfast, pets } =
+      this.state;
 
     let tempRooms = [...rooms];
 
     // transform values
     // get capacity
-    capacity = +capacity;
-    price = +price;
+    capacity = parseInt(capacity);
+    price = Number(price);
 
     // filter by type
     if (type !== "alle") {

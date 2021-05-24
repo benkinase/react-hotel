@@ -7,9 +7,9 @@
   --offWhite: #f7f7f7;
   --mainBlack: #222e38;
   --mainGrey: #a7b2be;
-  --darkGrey: #dddcd1;
+  --darkGrey: #e0e0e0;
 
-  --nice-red: #ff3232;
+  --nice-red: #eb3232;
   --nice-yellow: #e29e0b;
   --nice-purple: #572e57;
 
@@ -136,7 +136,12 @@ h6 {
   justify-content: center;
 }
 .roomsHero {
-  background-image: url("./images/room-2.jpeg");
   min-height: 60vh;
+  background-image: url("./images/room-1.jpeg");
+  background-color: transparent;
+  background-blend-mode: multiply;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 /* End of Hero */
