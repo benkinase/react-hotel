@@ -2,8 +2,6 @@ import { Route } from "react-router-dom";
 import React from "react";
 //local imports
 import {
-  Login,
-  Register,
   RoomDetails,
   Homepage,
   NotFound,
@@ -11,14 +9,14 @@ import {
   Success,
   Checkout,
   Profile,
+  Auth,
 } from "./pages/index";
 
 export const ROUTES = {
   HOMEPAGE: "/",
   ROOMS: "/rooms",
   ROOM: "/rooms/:slug",
-  LOGIN: "/login",
-  REGISTER: "/register",
+  AUTH: "/auth",
   RESERVE: "/room/reserve",
   CHECKOUT: "/room/checkout",
   PROFILE: "/profile",
@@ -46,17 +44,12 @@ export const routes = [
   },
 
   {
-    path: "/register",
-    component: Register,
+    path: "/auth",
+    component: Auth,
     name: "register",
     title: "register-page",
   },
-  {
-    path: "/login",
-    component: Login,
-    name: "login",
-    title: "login-page",
-  },
+
   {
     path: "/profile",
     component: Profile,

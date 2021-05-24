@@ -1,17 +1,18 @@
 import { ActionTypes as Action } from "../actions/ActionTypes";
+import { authState, RegisterState } from "../../types";
+let pre_Token = localStorage.getItem("token");
+let token = pre_Token ? JSON.parse(pre_Token) : null;
+const initialState: authState = {
+  token: token,
+  isAuth: true,
+  error: null,
+  loading: false,
+};
 
-//let localStore = localStorage.getItem("access_token");
-let localStore = JSON.parse(localStorage.getItem("token"));
-const initialState = localStore
-  ? {
-      token: localStore,
-      isAuth: true,
-      error: null,
-      loading: false,
-    }
-  : {};
-
-export function loginReducer(state = initialState, { type, payload }) {
+export const loginReducer = (
+  state: typeof initialState = initialState,
+  { type, payload }: any
+) => {
   switch (type) {
     case Action.LOAD_REQUEST:
       return Object.assign({}, state, { loading: true });
@@ -49,9 +50,12 @@ export function loginReducer(state = initialState, { type, payload }) {
     default:
       return state;
   }
-}
+};
 
-export function registerReducer(state = {}, { type, payload }) {
+export function registerReducer(
+  state: RegisterState = {},
+  { type, payload }: any
+) {
   switch (type) {
     case Action.REGISTER_REQUEST:
       return { loading: true };

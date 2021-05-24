@@ -2,13 +2,14 @@ export const CARD_ELEMENT_OPTIONS = {
   style: {
     base: {
       marginBottom: "10px",
-      padding: "10px",
+      padding: "20px",
       color: "#303238",
       fontSize: "16px",
       fontFamily: "sans-serif",
+      backgroundColor: "white",
       fontSmoothing: "antialiased",
       "::placeholder": {
-        color: "#CFD7DF",
+        color: "var(--nice-blue)",
       },
     },
     invalid: {

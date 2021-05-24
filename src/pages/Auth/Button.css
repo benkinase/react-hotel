@@ -1,0 +1,37 @@
+.button {
+  border: none;
+  text-transform: uppercase;
+  color: #cccccc;
+  padding: 25px 10px;
+  letter-spacing: 3px;
+  font-size: large;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 300ms ease-in-out;
+  width: 100%;
+}
+.button:focus {
+  outline: none;
+  opacity: 0.8;
+}
+
+.btn-container {
+  flex: 2;
+}
+
+.primary {
+  color: var(--nice-purple);
+  background-color: var(--gray-1);
+  border-bottom: 3px solid var(--nice-blue);
+}
+.secondary {
+  background-color: var(--gray-2);
+  color: var(--nice-blue);
+}
+.success {
+  background-color: #24b343;
+  color: var(--nice-blue);
+}
+.danger {
+  background-color: var(--nice-red);
+}

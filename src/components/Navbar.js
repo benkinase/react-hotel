@@ -24,8 +24,7 @@ class Navbar extends Component {
 
     const authLinks = (
       <>
-        <NavLink to={ROUTES.LOGIN}>login</NavLink>
-        <NavLink to={ROUTES.REGISTER}>signup</NavLink>
+        <NavLink to={ROUTES.AUTH}>Sign In</NavLink>
       </>
     );
 
@@ -86,7 +85,7 @@ const NavBarContainer = styled.nav`
     left: 0;
     width: 100%;
     padding: 0.75rem 2rem;
-    background: var(--offWhite);
+    background: var(--gray-3);
     z-index: 1;
   }
   .nav-header {
@@ -129,7 +128,7 @@ const NavBarContainer = styled.nav`
   }
   .nav-links a:hover,
   .nav-links li:hover {
-    color: var(--primaryColor);
+    color: var(--primary);
     cursor: pointer;
     background-color: #ebebe9;
     border-radius: 5px;

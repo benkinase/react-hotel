@@ -2,27 +2,21 @@
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css");
 
 :root {
-  --primaryColor: #acbdc9;
+  --primary: #dae1e7;
   --mainWhite: #fdfdfd;
-  --offWhite: #f7f7f7;
   --mainBlack: #222e38;
-  --mainGrey: #a7b2be;
-  --darkGrey: #e0e0e0;
+  --gray-1: #b8bec5;
+  --gray-2: #e0dddd;
+  --gray-3: #f8f5f5;
 
   --nice-red: #eb3232;
   --nice-yellow: #e29e0b;
   --nice-purple: #572e57;
-
-  --social-icon: var(--nice-yellow);
-  --formBgColor: var(--mainGrey);
-  --formColor: var(--mainWhite);
-
-  --buttonBgColor: var(--nice-yellow);
-  --buttonText: var(--mainBlack);
+  --nice-blue: #09265e;
 
   --mainTransition: all 0.3s linear;
   --mainSpacing: 3px;
-  --lightShadow: 2px 5px 3px 0px rgba(0, 0, 0, 0.5);
+  --lightShadow: 0px 10px 15px rgba(0, 0, 0, 0.4);
   --darkShadow: 4px 10px 5px 0px rgba(0, 0, 0, 0.5);
 }
 
@@ -50,7 +44,7 @@
   background-color: rgb(86, 88, 92);
 }
 *::-webkit-scrollbar-thumb {
-  background-color: var(--darkGrey);
+  background-color: var(--grey-1);
   border-radius: 10px;
   border: 3px solid var(--nice-purple);
 }
@@ -95,16 +89,16 @@ h6 {
   text-decoration: none;
   letter-spacing: var(--mainSpacing);
   color: var(--mainBlack);
-  background: var(--primaryColor);
+  background: var(--primary);
   padding: 0.4rem 0.9rem;
-  border: 3px solid var(--primaryColor);
+  border: 3px solid var(--primary);
   transition: var(--mainTransition);
   text-transform: uppercase;
   cursor: pointer;
 }
 .btn-primary:hover {
   background: transparent;
-  color: var(--primaryColor);
+  color: var(--primary);
 }
 .loading {
   text-transform: capitalize;

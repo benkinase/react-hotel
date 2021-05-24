@@ -1,11 +1,10 @@
-export { Login } from "./Login/index";
-export { Register } from "./Register/index";
-export { RoomDetails } from "./RoomDetails/index";
-export { NotFound } from "./NotFound/index";
-export { Footer } from "./Footer/index";
-export { Homepage } from "./Homepage/index";
-export { Reservation } from "./Reservation/index";
+export { RoomDetails } from "./RoomDetails";
+export { NotFound } from "./NotFound";
+export { Footer } from "./Footer";
+export { Homepage } from "./Homepage";
+export { Reservation } from "./Reservation";
 export { Rooms } from "./Rooms/index";
 export { Success } from "./Success";
 export { Checkout } from "./Checkout";
 export { Profile } from "./Profile";
+export { Auth } from "./Auth";

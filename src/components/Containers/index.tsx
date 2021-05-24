@@ -25,22 +25,48 @@ export const BackDrop = styled(Wrapper)`
   top: 0;
   background-color: transparent; //rgba(255, 255, 255, 0.5)
 `;
-export const FormWrapper = styled.main`
+
+type formWrapperProps = {
+  radius?: string;
+};
+export const FormWrapper = styled.main<formWrapperProps>`
   width: 80%;
   margin: 5rem auto;
-
-  box-shadow: var(--lightShadow);
+  .control {
+    margin: auto;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    & span {
+      margin-top: -25px;
+      text-align: left;
+    }
+  }
   .main {
-    background-color: var(--darkGrey);
+    border: 1px solid var(--gray-1);
+    border-top: none;
     padding: 20px 0;
     margin: auto;
-    border-radius: 5px;
+    border-radius: ${(props) => props.radius};
     span {
       color: var(--nice-red);
       padding: 20px 10px;
       letter-spacing: var(--mainSpacing);
     }
   }
+  .button__tabs {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    button {
+      font-size: 12px;
+      width: 100%;
+      margin-top: 10;
+    }
+  }
+
   h3 {
     text-align: center;
     padding-top: 10px;
@@ -63,7 +89,8 @@ export const StyledBooking = styled(Wrapper)`
     position: fixed;
     padding: 5px;
     box-shadow: var(--lightShadow);
-    background-color: var(--formBgColor);
+
+    background-color: var(--primary);
     transition: all 0.3s 0.3s cubic-bezier(0.17, 0.67, 0.83, 0.67);
     transform: translateY(-40rem);
 
@@ -84,9 +111,9 @@ export const StyledBooking = styled(Wrapper)`
     flex-direction: column;
     align-items: start;
     margin-left: -20px;
+    padding-bottom: 20px;
   }
   .fa-times {
-    //color: var(--mainGrey);
     position: absolute;
     top: 0;
     right: 0;

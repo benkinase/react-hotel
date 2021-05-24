@@ -16,7 +16,7 @@ function App() {
   // fetch authenticated user details
   useEffect(() => {
     if (token) {
-      dispatch(loadUser(token));
+      dispatch(loadUser());
     }
   }, [token, dispatch]);
 

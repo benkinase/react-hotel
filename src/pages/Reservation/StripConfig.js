@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { loadStripe } from "@stripe/stripe-js";
-import { Button, Paragraph } from "../../components";
+import { Button, Span } from "../../components";
 import {
   CardElement,
   Elements,
@@ -9,7 +9,7 @@ import {
 } from "@stripe/react-stripe-js";
 import { CARD_ELEMENT_OPTIONS } from "../../utils";
 
-const PUBLISHABLE_KEY = process.env.REACT_APP_PUBLISHABLE_KEY;
+const PUBLISHABLE_KEY = process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY;
 
 const stripePromise = loadStripe(PUBLISHABLE_KEY);
 
@@ -19,11 +19,11 @@ const CheckoutForm = ({ handleBooking, token }) => {
   // handle error
   const [hasError, setHasError] = useState(null);
   const [loading, setLoading] = useState(false);
+
   // handle order/payment submission if user token
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (!token) {
-      setHasError("Please login to place order");
       return;
     }
 
@@ -50,11 +50,10 @@ const CheckoutForm = ({ handleBooking, token }) => {
   return (
     <form style={{ width: "100%" }} onSubmit={handleSubmit}>
       <CardElement options={CARD_ELEMENT_OPTIONS} />
-      <Button width='100%' type='submit' disabled={!stripe}>
+      <Button margin='20px 0' width='100%' type='submit' disabled={!stripe}>
         {loading ? "loading" : "pay with stripe"}
       </Button>
-
-      {hasError && <Paragraph color='var(--nice-red)'>{hasError}</Paragraph>}
+      {hasError && <Span color='var(--nice-red)'>{hasError}</Span>}
     </form>
   );
 };

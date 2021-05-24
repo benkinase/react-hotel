@@ -175,6 +175,7 @@ export const Reservation: FC<ReservationProps> = (props) => {
               <Paragraph>Total days: {Math.ceil(days)}</Paragraph>
               <Paragraph>Total charges: €{charges}</Paragraph>
             </Wrapper>
+            <hr />
             <StripePayment handleBooking={handleBooking} token={token} />
           </Form>
         </Wrapper>

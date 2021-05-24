@@ -58,14 +58,10 @@ export interface IUser {
 }
 
 // new user interface
-export interface INewUser {
-  username: string;
+export type INewUser = IUser & {
   email: string;
-  // first_name?: string;
-  // last_name?: string;
-  password1: string;
   password2: string;
-}
+};
 // redux auth state
 export interface authState {
   token: string | null;
@@ -73,3 +69,11 @@ export interface authState {
   error?: any;
   loading?: boolean;
 }
+export type RegisterState = {
+  error?: string | null;
+  loading?: boolean;
+  first_name?: string;
+  last_name?: string;
+  username?: string;
+  email?: string;
+};

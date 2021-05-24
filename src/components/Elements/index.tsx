@@ -13,12 +13,13 @@ export const Form = styled.form`
 export const Input = styled.input`
   width: ${(props) => (props.width ? props.width : "70%")};
   padding: 10px;
-  background-color: var(--formColor);
-  border-radius: 1px;
-  border: 1px solid var(--borderColor);
+  background: var(--mainWhite);
+  border-radius: 5px 5px 0px 0px;
+  border: none;
+  border-bottom: 2px solid var(--gray-2);
   font-size: 18px;
   color: var(--mainBlack);
-  margin-bottom: 5px;
+  margin-bottom: 8px;
 
   &::placeholder {
     padding: 5px;
@@ -29,23 +30,26 @@ export const Input = styled.input`
   }
   &:focus {
     outline: none;
-    //color: var(---tertiaryText);
+    border-bottom: 3px solid var(--nice-red);
   }
 `;
 
 type ButtonProps = {
   width?: string;
+  bg?: string;
+  margin?: string;
+  color?: string;
 };
 export const Button = styled.button<ButtonProps>`
-  margin-top: 20px;
   width: ${(props) => (props.width ? props.width : "70%")};
-  padding: 10px;
+  margin: ${(props) => props.margin && props.margin};
+  padding: 15px;
   text-transform: uppercase;
   font-weight: 800;
-  letter-spacing: 0.3rem;
+  letter-spacing: 2px;
   cursor: pointer;
-  color: var(--buttonText);
-  background-color: var(--buttonBgColor);
+  color: ${(props) => (props.color ? props.color : "var(--gray-1)")};
+  background-color: ${(props) => (props.bg ? props.bg : "var(--nice-purple)")};
   transition: var(--mainTransition);
   border: none;
 
