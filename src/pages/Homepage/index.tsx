@@ -26,7 +26,7 @@ export const Homepage: FC = () => {
       <Hero>
         <Banner title={homeTitle} subtitle={homeMsg}>
           <Link to={ROUTES.ROOMS} className='btn-primary'>
-            Find Your Ideal Room
+            find your ideal room
           </Link>
         </Banner>
       </Hero>

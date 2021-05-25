@@ -1,7 +1,7 @@
 .button {
   border: none;
   text-transform: uppercase;
-  color: #cccccc;
+  color: #ccc6c6;
   padding: 25px 10px;
   letter-spacing: 3px;
   font-size: large;
@@ -22,7 +22,7 @@
 .primary {
   color: var(--nice-purple);
   background-color: var(--gray-1);
-  border-bottom: 3px solid var(--nice-blue);
+  border-bottom: 3px solid var(--nice-purple);
 }
 .secondary {
   background-color: var(--gray-2);

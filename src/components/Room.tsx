@@ -8,8 +8,8 @@ type RoomProps = {
   room: IRoom;
 };
 
-export const Room: React.FC<RoomProps> = ({ room }) => {
-  // destructuring room prop
+export function Room({ room }: RoomProps) {
+  // destructuring room props
   const { name, images, slug, price } = room;
 
   return (
@@ -29,7 +29,7 @@ export const Room: React.FC<RoomProps> = ({ room }) => {
       </article>
     </ContainerRoom>
   );
-};
+}
 
 //container with embedded styles
 const ContainerRoom = styled.div`
@@ -89,7 +89,7 @@ const ContainerRoom = styled.div`
     transform: translate(-50%, -50%) scale(1);
   }
   .room-info {
-    background: var(--darkGrey);
+    background: var(--gray-2);
     text-transform: capitalize;
     padding: 0.5rem 0;
     text-align: center;

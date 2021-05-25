@@ -5,11 +5,6 @@ import { API_URL_LIVE } from "../utils";
 const RoomContext = createContext();
 
 class RoomContextProvider extends Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.handleChange = this.handleChange.bind(this);
-  //   this.getRoomDetails = this.getRoomDetails.bind(this);
-  // }
   state = {
     rooms: [],
     sortedRooms: [],

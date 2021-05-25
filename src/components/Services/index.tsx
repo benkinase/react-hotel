@@ -70,7 +70,7 @@ const ContainerService = styled.div`
     padding: 5rem 0;
   }
   .services {
-    background: var(--darkGrey);
+    background: var(--gray-3);
     text-align: center;
   }
   .services-center {
@@ -83,7 +83,7 @@ const ContainerService = styled.div`
   }
   .services span {
     display: inline-block;
-    color: var(--primaryColor);
+    color: var(--mainBlack);
     font-size: 2.5rem;
     margin-bottom: 1.5rem;
   }

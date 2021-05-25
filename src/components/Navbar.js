@@ -19,12 +19,17 @@ class Navbar extends Component {
       return { isOpen: !prevState.isOpen };
     });
   };
+  handleNavClose = () => {
+    this.setState({ isOpen: false });
+  };
   render() {
     const { logout, token } = this.props;
 
     const authLinks = (
       <>
-        <NavLink to={ROUTES.AUTH}>Sign In</NavLink>
+        <NavLink to={ROUTES.AUTH}>
+          <span onClick={this.handleNavClose}>Sign In</span>
+        </NavLink>
       </>
     );
 
@@ -50,8 +55,12 @@ class Navbar extends Component {
             <ul
               className={this.state.isOpen ? "nav-links show-nav" : "nav-links"}
             >
-              <NavLink to={ROUTES.ROOMS}>rooms</NavLink>
-              <NavLink to={ROUTES.CHECKOUT}>checkout</NavLink>
+              <NavLink to={ROUTES.ROOMS}>
+                <span onClick={this.handleNavClose}> rooms</span>
+              </NavLink>
+              <NavLink to={ROUTES.CHECKOUT}>
+                <span onClick={this.handleNavClose}> checkout</span>
+              </NavLink>
               {!token && authLinks}
               {token && logoutLink}
             </ul>
@@ -85,7 +94,7 @@ const NavBarContainer = styled.nav`
     left: 0;
     width: 100%;
     padding: 0.75rem 2rem;
-    background: var(--gray-3);
+    background: var(--gray-1);
     z-index: 1;
   }
   .nav-header {
@@ -105,7 +114,10 @@ const NavBarContainer = styled.nav`
     transition: var(--mainTransition);
   }
   .nav-icon:hover {
-    color: var(--mainGrey);
+    opacity: 0.8;
+  }
+  .nav-icon:focus {
+    outline: none;
   }
   .nav-links {
     height: 0;
@@ -128,10 +140,9 @@ const NavBarContainer = styled.nav`
   }
   .nav-links a:hover,
   .nav-links li:hover {
-    color: var(--primary);
     cursor: pointer;
-    background-color: #ebebe9;
-    border-radius: 5px;
+    background-color: var(--gray-2);
+    border-radius: 2spx;
     padding: 0.3rem;
   }
 

@@ -9,7 +9,7 @@ export const RoomsContainer: FC = () => {
   const { error, loading } = useContext(RoomContext);
 
   if (loading) {
-    return <Loading />;
+    return <Loading title='Rooms loading' />;
   }
   if (error) {
     return <Error title={error} />;

@@ -54,7 +54,7 @@ export const Login: FC = () => {
                 <Input
                   type='text'
                   name='username'
-                  placeholder='Enter username'
+                  placeholder='Username'
                   value={values.username}
                   onChange={handleChange}
                   onBlur={handleBlur}
@@ -67,7 +67,7 @@ export const Login: FC = () => {
                 <Input
                   type='password'
                   name='password'
-                  placeholder='Enter password'
+                  placeholder='Password'
                   value={values.password}
                   onChange={handleChange}
                   onBlur={handleBlur}

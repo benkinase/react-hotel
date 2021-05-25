@@ -22,7 +22,7 @@ class FeaturedRooms extends React.Component {
         <section className='featured-rooms'>
           <Title title={featured_roomTitle} />
           <div className='featured-rooms-center'>
-            {loading ? <Loading /> : rooms}
+            {loading ? <Loading title='Featured rooms loading' /> : rooms}
           </div>
         </section>
       </ContainerFeatured>
@@ -32,8 +32,6 @@ class FeaturedRooms extends React.Component {
 
 export default FeaturedRooms;
 const ContainerFeatured = styled.div`
-  /* featured rooms */
-
   .featured-rooms {
     padding: 5rem 0;
   }
@@ -59,5 +57,4 @@ const ContainerFeatured = styled.div`
       max-width: 1170px;
     }
   }
-  /* end pf featured rooms */
 `;

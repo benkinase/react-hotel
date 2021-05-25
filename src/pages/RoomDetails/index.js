@@ -11,6 +11,7 @@ import {
   Span,
   Image,
   Paragraph,
+  Loading,
 } from "../../components";
 import { ROUTES } from "../../routeConfigs";
 import DynamicHero from "../../components/DynamicHero";
@@ -36,11 +37,8 @@ export function RoomDetails(props) {
 
   if (!room) {
     return (
-      <Wrapper className='error'>
-        <H3> no such room could be found...</H3>
-        <Link to={ROUTES.ROOMS} className='btn-primary'>
-          back to rooms
-        </Link>
+      <Wrapper>
+        <Loading title='Room loading' />
       </Wrapper>
     );
   }
@@ -59,7 +57,7 @@ export function RoomDetails(props) {
     images,
   } = room;
 
-  // promo deduction
+  // 5% promo deduction
   let promo_price = price * 0.95;
 
   // grab one image as main::array spread operator
@@ -130,7 +128,7 @@ export function RoomDetails(props) {
         </Wrapper>
       </section>
       <section className='room-extras'>
-        <H4>extras </H4>
+        <H4>extras</H4>
         <ul className='extras'>
           {extras[0].extra.split(",").map((item, index) => (
             <li key={index}>✿ {item}</li>
@@ -211,7 +209,7 @@ const ContainerDetails = styled.div`
     width: 80vw;
     margin: 0 auto 3rem auto;
   }
-  .room-extras h6 {
+  .room-extras h4 {
     text-transform: capitalize;
     text-align: justify;
     letter-spacing: var(--mainSpacing);
@@ -219,7 +217,7 @@ const ContainerDetails = styled.div`
   .extras {
     list-style-type: none;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(25%, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(30%, 1fr));
     grid-column-gap: 2rem;
     grid-row-gap: 1rem;
   }

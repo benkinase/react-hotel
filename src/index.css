@@ -2,12 +2,13 @@
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css");
 
 :root {
-  --primary: #dae1e7;
+  --primary: #f8fafc;
   --mainWhite: #fdfdfd;
   --mainBlack: #222e38;
-  --gray-1: #b8bec5;
-  --gray-2: #e0dddd;
-  --gray-3: #f8f5f5;
+
+  --gray-1: #dee3eb;
+  --gray-2: #ebf2f7;
+  --gray-3: #faf9f4;
 
   --nice-red: #eb3232;
   --nice-yellow: #e29e0b;
@@ -41,7 +42,7 @@
   width: 15px;
 }
 *::-webkit-scrollbar-track {
-  background-color: rgb(86, 88, 92);
+  background-color: var(--primary);
 }
 *::-webkit-scrollbar-thumb {
   background-color: var(--grey-1);
@@ -89,9 +90,9 @@ h6 {
   text-decoration: none;
   letter-spacing: var(--mainSpacing);
   color: var(--mainBlack);
-  background: var(--primary);
+  background: var(--gray-1);
   padding: 0.4rem 0.9rem;
-  border: 3px solid var(--primary);
+  border: 3px solid var(--gray-1);
   transition: var(--mainTransition);
   text-transform: uppercase;
   cursor: pointer;

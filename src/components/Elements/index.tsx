@@ -16,7 +16,7 @@ export const Input = styled.input`
   background: var(--mainWhite);
   border-radius: 5px 5px 0px 0px;
   border: none;
-  border-bottom: 2px solid var(--gray-2);
+  border-bottom: 2px solid var(--gray-1);
   font-size: 18px;
   color: var(--mainBlack);
   margin-bottom: 8px;
@@ -30,7 +30,7 @@ export const Input = styled.input`
   }
   &:focus {
     outline: none;
-    border-bottom: 3px solid var(--nice-red);
+    border-bottom: 2px solid var(--nice-purple);
   }
 `;
 

@@ -89,7 +89,7 @@ const ContainerRoom = styled.div`
     transform: translate(-50%, -50%) scale(1);
   }
   .room-info {
-    background: var(--darkGrey);
+    background: var(--gray-1);
     text-transform: capitalize;
     padding: 0.5rem 0;
     text-align: center;

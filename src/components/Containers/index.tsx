@@ -32,6 +32,7 @@ type formWrapperProps = {
 export const FormWrapper = styled.main<formWrapperProps>`
   width: 80%;
   margin: 5rem auto;
+
   .control {
     margin: auto;
     width: 100%;
@@ -41,7 +42,6 @@ export const FormWrapper = styled.main<formWrapperProps>`
     align-items: center;
     & span {
       margin-top: -25px;
-      text-align: left;
     }
   }
   .main {

@@ -55,7 +55,7 @@ export const Register: FC = () => {
                 <Input
                   type='text'
                   name='username'
-                  placeholder='Enter username'
+                  placeholder='Username'
                   value={values.username}
                   onChange={handleChange}
                   onBlur={handleBlur}
@@ -68,7 +68,7 @@ export const Register: FC = () => {
                 <Input
                   type='email'
                   name='email'
-                  placeholder='Enter Email'
+                  placeholder='Email'
                   value={values.email}
                   onChange={handleChange}
                 />
@@ -80,7 +80,7 @@ export const Register: FC = () => {
                 <Input
                   type='password'
                   name='password'
-                  placeholder='Enter password'
+                  placeholder='Password'
                   value={values.password}
                   onChange={handleChange}
                   onBlur={handleBlur}
@@ -93,7 +93,7 @@ export const Register: FC = () => {
                 <Input
                   type='password'
                   name='password2'
-                  placeholder='Enter confirm password'
+                  placeholder='Confirm password'
                   value={values.password2}
                   onChange={handleChange}
                 />

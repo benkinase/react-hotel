@@ -1,11 +1,14 @@
 import React from "react";
-import LoadingGif from "../../images/gif/loading-gear.gif";
+import LoadingGif from "../../images/gifs/loading-gear.gif";
 import { Wrapper, Image, H4 } from "../index";
 
-export const Loading: React.FC = () => {
+type LoadingProps = {
+  title: string;
+};
+export const Loading: React.FC<LoadingProps> = ({ title }) => {
   return (
     <Wrapper className='loading'>
-      <H4>Rooms data loading</H4>
+      <H4>{title}</H4>
       <Image src={LoadingGif} alt='loading gif' />
     </Wrapper>
   );
@@ -17,7 +20,7 @@ type ErrorProps = {
 };
 export const Error: React.FC<ErrorProps> = ({ title }) => {
   return (
-    <Wrapper className='loading'>
+    <Wrapper className='error'>
       <H4>{title} rooms</H4>
     </Wrapper>
   );
