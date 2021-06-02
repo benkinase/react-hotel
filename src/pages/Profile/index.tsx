@@ -2,9 +2,13 @@ import React, { FC } from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 import { Paragraph, Wrapper, H3 } from "../../components";
+import { RootState } from "../../redux/reducers";
+import { AuthState } from "../../types";
 
 export const Profile: FC = () => {
-  const { username, isAuth, email } = useSelector((state: any) => state.auth);
+  const { username, isAuth, email }: AuthState = useSelector(
+    (state: RootState) => state.auth
+  );
   return (
     <ContainerProfile>
       <Wrapper className='profile'>

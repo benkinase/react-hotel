@@ -89,8 +89,7 @@ export const StyledBooking = styled(Wrapper)`
     position: fixed;
     padding: 5px;
     box-shadow: var(--lightShadow);
-
-    background-color: var(--primary);
+    background-color: var(--gray-1);
     transition: all 0.3s 0.3s cubic-bezier(0.17, 0.67, 0.83, 0.67);
     transform: translateY(-40rem);
 

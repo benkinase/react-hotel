@@ -63,17 +63,27 @@ export type INewUser = IUser & {
   password2: string;
 };
 // redux auth state
-export interface authState {
+export interface AuthState {
   token: string | null;
   isAuth: boolean;
-  error?: any;
-  loading?: boolean;
-}
-export type RegisterState = {
-  error?: string | null;
-  loading?: boolean;
   first_name?: string;
   last_name?: string;
   username?: string;
   email?: string;
+  error?: any;
+  loading?: boolean;
+}
+export type RegisterState = {
+  username?: string;
+  email?: string;
+  password: string;
+  password2: string;
+  error?: string | null;
+  loading?: boolean;
 };
+export type UserAction = {
+  type: string;
+  payload: null | IUser | INewUser;
+};
+
+export type DispatchType = (args: UserAction) => UserAction;

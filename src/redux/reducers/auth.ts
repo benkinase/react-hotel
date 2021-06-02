@@ -1,8 +1,10 @@
 import { ActionTypes as Action } from "../actions/ActionTypes";
-import { authState, RegisterState } from "../../types";
+import { AuthState, RegisterState, UserAction } from "../../types";
+
 let pre_Token = localStorage.getItem("token");
 let token = pre_Token ? JSON.parse(pre_Token) : null;
-const initialState: authState = {
+
+const initialState: AuthState = {
   token: token,
   isAuth: true,
   error: null,
@@ -10,8 +12,8 @@ const initialState: authState = {
 };
 
 export const loginReducer = (
-  state: typeof initialState = initialState,
-  { type, payload }: any
+  state: AuthState = initialState,
+  { type, payload }: UserAction
 ) => {
   switch (type) {
     case Action.LOAD_REQUEST:
@@ -34,7 +36,7 @@ export const loginReducer = (
       return Object.assign({}, state, {
         loading: false,
         isAuth: true,
-        token: payload.key,
+        token: payload,
         error: null,
       });
     case Action.LOGIN_FAIL:
@@ -52,9 +54,18 @@ export const loginReducer = (
   }
 };
 
+// REGISTERATION
+const initState: RegisterState = {
+  username: "",
+  email: "",
+  password: "",
+  password2: "",
+  error: null,
+  loading: false,
+};
 export function registerReducer(
-  state: RegisterState = {},
-  { type, payload }: any
+  state: RegisterState = initState,
+  { type, payload }: UserAction
 ) {
   switch (type) {
     case Action.REGISTER_REQUEST:

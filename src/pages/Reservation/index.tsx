@@ -140,7 +140,7 @@ export const Reservation: FC<ReservationProps> = (props) => {
         <Wrapper className={drawClass}>
           <i className='fas fa-times' onClick={() => close()}></i>
           {error && <Paragraph className='error-msg'>{error}</Paragraph>}
-          <Form onSubmit={handleBooking}>
+          <Form onSubmit={handleBooking} id='reserve'>
             <Label>Enter number of guests</Label>
             <Input
               type='number'

@@ -5,11 +5,14 @@ import { register } from "../../redux/actions/auth";
 import { useDispatch, useSelector } from "react-redux";
 import { Formik, FormikProps } from "formik";
 import { newUserSchema } from "../../utils";
-import { INewUser } from "../../types";
+import { INewUser, RegisterState } from "../../types";
+import { RootState } from "../../redux/reducers";
 
 export const Register: FC = () => {
   // destruring redux register state
-  const { error, loading } = useSelector((state: any) => state.register);
+  const { loading, error }: RegisterState = useSelector(
+    (state: RootState) => state.register
+  );
 
   // instantiate use history and use dispatch hooks
   const history = useHistory();

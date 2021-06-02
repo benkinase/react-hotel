@@ -5,12 +5,14 @@ import { Formik, FormikProps } from "formik";
 import { userSchema } from "../../utils";
 import { Form, Input, Wrapper, Button, H3, Span } from "../../components";
 import { login } from "../../redux/actions/auth";
-
-import { IUser } from "../../types";
+import { RootState } from "../../redux/reducers";
+import { AuthState, IUser } from "../../types";
 
 export const Login: FC = () => {
   // destruring redux auth state
-  const { error, loading } = useSelector((state: any) => state.auth);
+  const { loading, error }: AuthState = useSelector(
+    (state: RootState) => state.register
+  );
 
   // instantiate use history and use dispatch hooks
   const history = useHistory();
