@@ -83,7 +83,7 @@ export type RegisterState = {
 };
 export type UserAction = {
   type: string;
-  payload: null | IUser | INewUser;
+  payload: IUser | INewUser | null;
 };
 
 export type DispatchType = (args: UserAction) => UserAction;

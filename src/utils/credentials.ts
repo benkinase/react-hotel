@@ -2,7 +2,7 @@ import axios from "axios";
 export const API_URL_LOCAL = process.env.REACT_APP_DJANGO_BACKEND;
 export const API_URL_LIVE = process.env.REACT_APP_DJANGO_BACKEND_ANYWHERE;
 
-// GET TOKEN FROM LOCALSTORAGE
+// GET TOKEN FROM LOCAL STORAGE
 let pre_Token = localStorage.getItem("token");
 let token = pre_Token ? JSON.parse(pre_Token) : null;
 
@@ -11,7 +11,7 @@ export const axiosAPI = axios.create({
   baseURL: API_URL_LIVE,
   timeout: 5000,
   headers: {
-    Authorization: token ? "Token " + token : null,
+    Authorization: token ? "Token " + token : "",
     "Content-Type": "application/json",
     Accept: "application/json",
   },
