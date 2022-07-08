@@ -1,11 +1,11 @@
 import React, { FC } from "react";
 import "./Button.css";
-type ButonProps = {
-  variant: String;
+interface IButtonProps {
+  variant: string;
   children: React.ReactNode;
   onClick?: () => void;
-};
-export const Buttons: FC<ButonProps> = (props) => {
+}
+export const Buttons: FC<IButtonProps> = (props) => {
   const { variant = "primary", children, ...rest } = props;
 
   return (

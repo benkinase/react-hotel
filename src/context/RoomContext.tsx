@@ -1,15 +1,32 @@
 import React, { Component, createContext } from "react";
 import { API_URL_LIVE } from "../utils";
-
+import { RoomContextState, IRoom } from "../types";
 //
-const RoomContext = createContext();
+
+const defaultValue: RoomContextState = {
+  rooms: [],
+  sortedRooms: [],
+  featuredRooms: [],
+  loading: false,
+  error: "",
+  type: "alle",
+  capacity: 1,
+  price: 0,
+  minPrice: 0,
+  maxPrice: 0,
+  minSize: 0,
+  maxSize: 0,
+  breakfast: false,
+  pets: false,
+};
+const RoomContext = createContext(defaultValue);
 
 class RoomContextProvider extends Component {
-  state = {
+  state: RoomContextState = {
     rooms: [],
     sortedRooms: [],
     featuredRooms: [],
-    isLoading: true,
+    loading: true,
     error: "",
     type: "alle",
     capacity: 1,
@@ -31,29 +48,32 @@ class RoomContextProvider extends Component {
     };
 
     try {
+      this.setState({ loading: true });
       const res = await fetch(url, { method: "GET", headers });
       const result = await res.json();
 
       // format result
       const rooms = this.djangoDataFormatter(result);
-      //filter featued rooms
-      const featuredRooms = rooms.filter((room) => room.featured === true);
+      //filter featured rooms
+      const featuredRooms = rooms.filter(
+        (room: IRoom) => room.featured === true
+      );
 
       // get max price and size
-      let maxPrice = Math.max(...rooms.map((item) => item.price));
-      let maxSize = Math.max(...rooms.map((item) => item.size));
+      let maxPrice = Math.max(...rooms.map((item: IRoom) => item.price));
+      let maxSize = Math.max(...rooms.map((item: IRoom) => item.size));
 
       this.setState({
         rooms,
         featuredRooms,
         sortedRooms: rooms,
-        isLoading: false,
+        loading: false,
         price: maxPrice,
         maxPrice,
         maxSize,
       });
-    } catch (error) {
-      this.setState({ error: error.message });
+    } catch (error: any) {
+      this.setState({ error: error.message, loading: false });
     }
   }
   // fetch hotel data on component mount
@@ -61,14 +81,14 @@ class RoomContextProvider extends Component {
     this.getDjangoHotelData();
   }
   // get a single room with using slug
-  getRoomDetails = (slug) => {
+  getRoomDetails = (slug: string) => {
     let tempRooms = this.state.rooms;
     const room = tempRooms.find((room) => room.slug === slug);
     return room;
   };
   // custom function to format received backend data
-  djangoDataFormatter(items) {
-    let tempItems = items.map((item) => {
+  djangoDataFormatter(items: IRoom[]) {
+    let tempItems = items.map((item: IRoom) => {
       let id = item.id;
       let images = item.images.map((image) => image.image);
       let room = { ...item, images, id };
@@ -77,12 +97,11 @@ class RoomContextProvider extends Component {
     return tempItems;
   }
 
-  handleChange = (e) => {
-    const target = e.target;
-    const value = target.type === "checkbox" ? target.checked : target.value;
-    const name = target.name;
+  handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    const { name, value, checked, type } = e.target;
+    const inputValue = type === "checkbox" ? checked : value;
 
-    this.setState({ [name]: value }, this.filterRooms);
+    this.setState({ [name]: inputValue }, this.filterRooms);
   };
   // filter rooms based on different properties
   filterRooms = () => {
@@ -93,7 +112,7 @@ class RoomContextProvider extends Component {
 
     // transform values
     // get capacity
-    capacity = parseInt(capacity);
+    capacity = parseInt(`${capacity}`);
     price = Number(price);
 
     // filter by type

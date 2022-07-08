@@ -37,8 +37,8 @@ export interface RoomContextState {
   rooms: IRoom[];
   sortedRooms: IRoom[];
   featuredRooms: IRoom[];
-  isLoading: boolean;
-  error: any;
+  loading: boolean;
+  error: string;
   type: string;
   capacity: number;
   price: number;
@@ -49,7 +49,7 @@ export interface RoomContextState {
   breakfast: boolean;
   pets: boolean;
   handleChange?: (e: any) => void;
-  getRoomDetails?: (slug: string | undefined) => void;
+  getRoomDetails?: (slug: string) => IRoom | undefined;
 }
 // user interface
 export interface IUser {

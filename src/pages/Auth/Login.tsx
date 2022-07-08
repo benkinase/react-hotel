@@ -9,7 +9,7 @@ import { RootState } from "../../redux/reducers";
 import { AuthState, IUser } from "../../types";
 
 export const Login: FC = () => {
-  // destruring redux auth state
+  // destructuring redux auth state
   const { loading, error }: AuthState = useSelector(
     (state: RootState) => state.register
   );
@@ -52,33 +52,33 @@ export const Login: FC = () => {
           } = props;
           return (
             <Form onSubmit={handleSubmit}>
-              <Wrapper className='control'>
+              <Wrapper className="control">
                 <Input
-                  type='text'
-                  name='username'
-                  placeholder='Username'
+                  type="text"
+                  name="username"
+                  placeholder="Username"
                   value={values.username}
                   onChange={handleChange}
                   onBlur={handleBlur}
                 />
                 {errors.username && touched.username && (
-                  <Span color='var(--nice-red)'>{errors.username}</Span>
+                  <Span color="var(--nice-red)">{errors.username}</Span>
                 )}
               </Wrapper>
-              <Wrapper className='control'>
+              <Wrapper className="control">
                 <Input
-                  type='password'
-                  name='password'
-                  placeholder='Password'
+                  type="password"
+                  name="password"
+                  placeholder="Password"
                   value={values.password}
                   onChange={handleChange}
                   onBlur={handleBlur}
                 />
                 {errors.password && touched.password && (
-                  <Span color='var(--nice-red)'>{errors.password}</Span>
+                  <Span color="var(--nice-red)">{errors.password}</Span>
                 )}
               </Wrapper>
-              <Button margin='10px 0'>
+              <Button margin="10px 0">
                 {loading || isSubmitting ? "login..." : "login"}
               </Button>
             </Form>
